@@ -1,4 +1,5 @@
 {
-	"MFD-221": "src/test/resources/testdata/create-backup-for-course.json"
-	
+	"MFD-221": "src/test/resources/testdata/create-backup-for-course.json",
+	"MFD-223": "src/test/resources/testdata/enrollUsers.json",
+	"MFD-227": "src/test/resources/testdata/create-backup-for-course.json"
 }

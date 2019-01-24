@@ -9,7 +9,7 @@
 
 	<test name="Moodle_TLH_Automation_Test">
 		<classes>
-			<class name="com.moodle.tlh.tests.CaseTestSuite">
+			<class name="com.moodle.tlh.tests.Module_1_CreateBackup_Testuite">
 			</class>
 		</classes>
 	</test>
