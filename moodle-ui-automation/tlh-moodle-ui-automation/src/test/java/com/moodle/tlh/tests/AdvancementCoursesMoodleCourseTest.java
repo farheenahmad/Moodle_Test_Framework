@@ -35,6 +35,7 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		
 		Navigator.GetParticipationOperationsPage().loginAsRespectiveUser(createBackupData);
 		rightNavOperations.getAssignmentsPage();
+		Navigator.GetAssignmentsOperations().clickAllAsignmentsLink();
 		
 	}
 	

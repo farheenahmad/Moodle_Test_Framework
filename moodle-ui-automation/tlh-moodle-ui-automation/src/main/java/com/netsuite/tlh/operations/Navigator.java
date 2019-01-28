@@ -21,4 +21,8 @@ public class Navigator extends BaseOperations {
 		return OperationFactory.getOperation(CoursePageOperations.class);
 	}
 	
+	public static AssignmentsOperations GetAssignmentsOperations() throws Throwable {
+		return OperationFactory.getOperation(AssignmentsOperations.class);
+	}
+	
 }
