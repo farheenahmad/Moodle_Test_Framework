@@ -1,6 +1,7 @@
 package com.netsuite.tlh.pages;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.testng.asserts.SoftAssert;
 
@@ -34,6 +35,11 @@ public class RightNavBar extends BasePage {
 	
 	@FindBy(xpath = "//p//a[text()='Courses']")
 	private WebElement coursesLink;
+	
+	@FindBy(xpath = "//a[contains(text(),'Assignments')]")
+	private WebElement assignmentsLink;
+	
+	
 
 	public RightNavBar clickOnFitnessPovCourse() throws Throwable {
 		waitForElementToBeVisibile(fitnessPovCourse);
@@ -73,9 +79,20 @@ public class RightNavBar extends BasePage {
 	}
 	
 	public RightNavBar clickOnCourses() throws Throwable {
+		BrowserFactory.getDriver().navigate().refresh();
 		waitForElementToBeVisibile(coursesLink);
-		coursesLink.click();
+		waitForElementToBeClickable(coursesLink);
+		Actions act= new Actions(BrowserFactory.getDriver());
+		act.moveToElement(coursesLink).click().build().perform();
+		//coursesLink.click();
 		return this;
 	}
 
+	public RightNavBar clickOnAssignments() throws Throwable {
+		
+		waitForElementToBeVisibile(assignmentsLink);
+		waitForElementToBeClickable(assignmentsLink);
+		assignmentsLink.click();
+		return this;
+	}
 }

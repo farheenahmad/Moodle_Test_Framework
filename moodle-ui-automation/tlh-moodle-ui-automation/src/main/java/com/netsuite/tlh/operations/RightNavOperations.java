@@ -23,9 +23,13 @@ public class RightNavOperations extends BaseOperations {
 	}
 	
 	public RightNavOperations getCoursesPage() throws DriverNotInitializedException, Throwable {
-		NetsuiteTLHPageFactory.getPage(RightNavBar.class);
+		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnCourses();
 		return this;	
 	}
 	
+	public RightNavOperations getAssignmentsPage() throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnAssignments();
+		return this;	
+	}
 	
 }

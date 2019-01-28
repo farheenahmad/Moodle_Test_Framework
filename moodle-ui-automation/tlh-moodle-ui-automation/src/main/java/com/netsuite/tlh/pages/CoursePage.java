@@ -15,7 +15,7 @@ public class CoursePage extends MenuBarPage {
 	@FindBy(xpath = "//button[text()='Manage courses']")
 	private WebElement manageCourseButton;
 
-	@FindBy(xpath = "//a[text()='MoodleCourse']/following-sibling::div[@class='float-right']//a//i[@title='Delete']")
+	@FindBy(xpath = "//a[text()='AutomationMoodleCourse']/following-sibling::div[@class='float-right']//a//i[@title='Delete']")
 	private WebElement deleteCourseButton;
 	
 	@FindBy(xpath = "//button[text()='Delete']")
@@ -49,6 +49,10 @@ public class CoursePage extends MenuBarPage {
 		return this;
 	}
 
-	
+	public CoursePage clickOnRespectiveUser() throws Throwable {
+		waitForElementToBeVisibile(deleteCourseButton);
+		deleteCourseButton.click();
+		return this;
+	}
 
 }

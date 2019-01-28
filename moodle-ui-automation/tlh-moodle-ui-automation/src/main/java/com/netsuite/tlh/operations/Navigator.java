@@ -21,6 +21,4 @@ public class Navigator extends BaseOperations {
 		return OperationFactory.getOperation(CoursePageOperations.class);
 	}
 	
-
-	
 }

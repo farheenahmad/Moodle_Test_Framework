@@ -24,13 +24,19 @@ public class ParticipantsPageOperations extends BaseOperations {
 	}
 	
 	public ParticipantsPageOperations enrollFacilitationManager(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
-		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnEnrolUsers().selectUsers(createBackupData.getUserName3())
-		.selectRoles(createBackupData.getRole3()).clickOnEnrolUsersSaveButton();
+		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnEnrolUsers()
+		.selectUsers(createBackupData.getUserName3())
+		.selectRoles(createBackupData.getRole3())
+		.clickOnEnrolUsersSaveButton();
 		return this;
 		
 	}
 	
-	
+	public ParticipantsPageOperations loginAsRespectiveUser(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnRespectiveUser(createBackupData.getRole1()).clickOnLoginAs().clickContinue();
+		return this;
+		
+	}
 	
 	
 }

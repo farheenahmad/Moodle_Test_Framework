@@ -19,7 +19,7 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		
 	}
 	
-	@Test(priority=2,description = "MFD-223 ::Module 3: Write test automation for Enrolling the Users", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	@Test(priority=2,description = "MFD-223 ::Module 3:Enrolling the Users", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void EnrollingTheUsers(LinkedHashMap<String, ?> testData) throws Throwable {
 
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
@@ -28,10 +28,35 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		.enrollFacilitator(createBackupData).enrollFacilitationManager(createBackupData);
 		
 	}
-	
-	@Test(priority=3,description = "MFD-227 ::Module 7: Deleting the respective course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
-	public void DeletingTheRespectiveCourse(LinkedHashMap<String, ?> testData) throws Throwable {
+	@Test(priority=3,description = "MFD-224 ::Module 4: Login as student and Complete the assignment", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	public void LoginAsStudentAndCompleteAssignment(LinkedHashMap<String, ?> testData) throws Throwable {
+		
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
+		
+		Navigator.GetParticipationOperationsPage().loginAsRespectiveUser(createBackupData);
+		rightNavOperations.getAssignmentsPage();
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//Completed
+	//@Test(priority=4,description = "MFD-227 ::Module 7: Deleting the respective course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	public void DeletingTheRespectiveCourse(LinkedHashMap<String, ?> testData) throws Throwable {
+	
 		rightNavOperations.getCoursesPage();
 		Navigator.GetCoursePageOperations().deleteRespectiveCourse();
 		

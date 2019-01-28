@@ -22,7 +22,7 @@
 	</dependencies>
 
 	<properties>
-		<appUrl>https://advancementcourses-uat.learninghouse.com</appUrl>
+		<appUrl>https://advancementcourses-dev.learninghouse.com/</appUrl>
 		<customerAppUrl>https://system.sandbox.netsuite.com/app/login/secure/privatelogin.nl?c=4493355</customerAppUrl>
 		<browser>chrome</browser>
 		<testngXml>testng.xml</testngXml>

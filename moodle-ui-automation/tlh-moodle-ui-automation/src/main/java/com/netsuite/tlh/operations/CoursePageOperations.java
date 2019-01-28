@@ -11,7 +11,5 @@ public class CoursePageOperations extends BaseOperations {
 		.clickContinueButton();
 		return this;	
 	}
-
-
 	
 }
