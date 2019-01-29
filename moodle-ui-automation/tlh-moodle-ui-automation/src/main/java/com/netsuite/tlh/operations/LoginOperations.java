@@ -11,6 +11,11 @@ public class LoginOperations implements IOperations {
 		NetsuiteTLHPageFactory.getPage(LoginPage.class).doLogIn(userName, passWord);
 		return OperationFactory.getOperation(HomeOperations.class);
 	}
+	
+	public HomeOperations doSecondLogin(String userName, String passWord) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(LoginPage.class).doSecondLogIn(userName, passWord);
+		return OperationFactory.getOperation(HomeOperations.class);
+	}
 
 	
 }

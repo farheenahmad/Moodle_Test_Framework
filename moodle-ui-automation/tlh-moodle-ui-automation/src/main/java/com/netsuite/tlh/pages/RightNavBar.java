@@ -39,6 +39,9 @@ public class RightNavBar extends BasePage {
 	@FindBy(xpath = "//a[contains(text(),'Assignments')]")
 	private WebElement assignmentsLink;
 	
+	@FindBy(xpath = "//a[text()='Facilitation Manager Dashboard']")
+	private WebElement facilitationManagerDashboardLink;
+	
 	
 
 	public RightNavBar clickOnFitnessPovCourse() throws Throwable {
@@ -93,6 +96,14 @@ public class RightNavBar extends BasePage {
 		waitForElementToBeVisibile(assignmentsLink);
 		waitForElementToBeClickable(assignmentsLink);
 		assignmentsLink.click();
+		return this;
+	}
+	
+public RightNavBar clickOnFacilitationManagerDashboardLink() throws Throwable {
+		
+		waitForElementToBeVisibile(facilitationManagerDashboardLink);
+		waitForElementToBeClickable(facilitationManagerDashboardLink);
+		facilitationManagerDashboardLink.click();
 		return this;
 	}
 }

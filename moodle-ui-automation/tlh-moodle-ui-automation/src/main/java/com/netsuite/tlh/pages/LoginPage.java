@@ -23,6 +23,15 @@ public class LoginPage extends BasePage {
 
 	@FindBy(css = "input[value='Log in']")
 	private WebElement loginBtn;
+	
+	@FindBy(id = "username")
+	private WebElement secondUserName;
+
+	@FindBy(id = "password")
+	private WebElement secondPassword;
+
+	@FindBy(id = "loginbtn")
+	private WebElement secondLoginBtn;
 
 
 
@@ -54,6 +63,33 @@ public class LoginPage extends BasePage {
 			
 	}
 
+	public LoginPage enterSecondUserName(String emailId) throws Throwable {
+		waitForElementToBeVisibile(secondUserName);
+		secondUserName.clear();
+		secondUserName.sendKeys(emailId);
+		return this;
+	}
+
+	public LoginPage enterSecondPassword(String passWord) throws Throwable {
+		waitForElementToBeVisibile(secondPassword);
+		secondPassword.clear();
+		secondPassword.sendKeys(passWord);
+		return this;
+	}
+	public LoginPage clickSecondLoginButton() throws Throwable {
+		waitForElementToBeVisibile(secondLoginBtn);
+		secondLoginBtn.click();
+		return this;
+	}
+
+	public LoginPage doSecondLogIn(String userName, String passWord) throws Throwable {
+		enterSecondUserName(userName);
+		enterSecondPassword(passWord);
+		clickSecondLoginButton();
+			
+		return this;
+			
+	}
 	
 
 }

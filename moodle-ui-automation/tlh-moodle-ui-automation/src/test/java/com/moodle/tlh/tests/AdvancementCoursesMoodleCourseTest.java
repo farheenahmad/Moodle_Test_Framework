@@ -3,6 +3,7 @@ package com.moodle.tlh.tests;
 import java.util.LinkedHashMap;
 import org.testng.annotations.Test;
 import com.framework.utils.Utility;
+import com.netsuite.tlh.operations.FacilitationManagerDashboardOperations;
 import com.netsuite.tlh.operations.Navigator;
 import com.netsuite.tlh.testdata.CreateBackupData;
 
@@ -43,8 +44,10 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 	@Test(priority=4,description = "MFD-225 ::Facilitation dashboard :Grading the assignment", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void FacilitationDashboardGradingTheAssignment(LinkedHashMap<String, ?> testData) throws Throwable {
 		
-		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
-		
+		//CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
+		loginOperations.doSecondLogin(userName, passWord);
+		rightNavOperations.getFacilitationManagerDashboard();
+		Navigator.FacilitationManagerDashboardOperations().gradeAssigment();
 		
 		
 	}
