@@ -31,6 +31,18 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	
 	@FindBy(css = "table[class='table']")
 	private WebElement table;
+	
+	@FindBy(css = "tr[role='radiogroup']>td")
+	private WebElement grade;
+	
+	@FindBy(css = "button[name='savechanges']")
+	private WebElement saveChangesButton;
+	
+	@FindBy(xpath = "//div[text()='Graded']")
+	private WebElement gradedText;
+	
+	
+	
 
 	public FacilitationManagerDashboardPage selectDateSubmitted() throws Throwable {
 		waitForElementToBeVisibile(dateSubmittedInput);
@@ -44,7 +56,13 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	
 	public FacilitationManagerDashboardPage clickFilterButton() throws Throwable {
 		waitForElementToBeVisibile(filterButton);
+		waitForElementToBeClickable(filterButton);
 		filterButton.click();
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage refreshPage() throws Throwable {
+		BrowserFactory.getDriver().navigate().refresh();
 		return this;
 	}
 	
@@ -63,8 +81,10 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		String currentWindow = BrowserFactory.getDriver().getWindowHandle();
 		for(String winHandle : BrowserFactory.getDriver().getWindowHandles()){
 			   if (BrowserFactory.getDriver().switchTo().window(winHandle).getTitle().contains("Assignment:")) {
-			    System.out.println("In tab");
-			     BrowserFactory.getDriver().close();
+				  clickOneOfTheGrade();
+				  clicksaveChangesButton();
+				  waitForElementToBeVisibile(gradedText);
+				  BrowserFactory.getDriver().close();
 			     break;
 			   } 
 			   else {
@@ -74,6 +94,29 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 			   BrowserFactory.getDriver().switchTo().window(currentWindow);
 	}
 		BrowserFactory.getDriver().switchTo().window(currentWindow);
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage clickOneOfTheGrade() throws Throwable {
+		waitForElementToBeVisibile(grade);
+		List <WebElement> elements=BrowserFactory.getDriver().findElements(By.cssSelector("tr[role='radiogroup']"));
+		System.out.println(elements.size());
+		if(elements.size()==1){
+			WebElement ele=BrowserFactory.getDriver().findElement(By.xpath("((//tr[@role='radiogroup'])[1]//td)[4]"));
+			waitForElementToBeClickable(ele);
+			ele.click();
+		}
+		else
+		for(int i=1;i<=elements.size();i++){
+			BrowserFactory.getDriver().findElement(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]")).click();
+		}
+		
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage clicksaveChangesButton() throws Throwable {
+		waitForElementToBeVisibile(saveChangesButton);
+		saveChangesButton.click();
 		return this;
 	}
 

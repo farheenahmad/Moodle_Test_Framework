@@ -9,7 +9,8 @@ public class FacilitationManagerDashboardOperations extends BaseOperations {
 	
 	public FacilitationManagerDashboardOperations gradeAssigment() throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(FacilitationManagerDashboardPage.class).selectDateSubmitted().clickFilterButton()
-		.openAssigmentsLink().gradeAssignment();
+		.openAssigmentsLink().gradeAssignment().openAssigmentsLink().gradeAssignment().openAssigmentsLink().gradeAssignment()
+		.refreshPage();
 		return this;	
 	}
 	
