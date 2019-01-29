@@ -8,7 +8,8 @@ import com.netsuite.tlh.pages.CoursePage;
 public class AssignmentsOperations extends BaseOperations {
 	
 	public AssignmentsOperations clickAllAsignmentsLink() throws DriverNotInitializedException, Throwable {
-		NetsuiteTLHPageFactory.getPage(AssignmentsPage.class).openAssigmentsLink(0).openAssigmentsLink(1).openAssigmentsLink(2);
+		NetsuiteTLHPageFactory.getPage(AssignmentsPage.class).openAssigmentsLink(0).completeAssignment()
+		.openAssigmentsLink(1).completeAssignment().openAssigmentsLink(2).completeAssignment();
 		return this;	
 	}
 	

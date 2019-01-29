@@ -11,24 +11,23 @@ public class MenuBarPage extends BasePage {
 	public MenuBarPage() throws DriverNotInitializedException {
 		super();
 	}
-
-	@FindBy(css = "span[class='userbutton']")
-	private WebElement userNav;
+	
+	@FindBy(css = "a[id='dropdown-1']")
+	private WebElement menuBarDropdown;
 	
 	@FindBy(css = "i[title='Log out']")
-	private WebElement logout;
+	private WebElement logOut;
 	
 	
-
-	public MenuBarPage clickOnUserNav() throws Throwable {
-		waitForElementToBeVisibile(userNav);
-		userNav.click();
+	public MenuBarPage clickmenuBarDropDown() throws Throwable {
+		waitForElementToBeVisibile(menuBarDropdown);
+		menuBarDropdown.click();
 		return this;
 	}
 	
-	public MenuBarPage clickLogOut() throws Throwable {
-		waitForElementToBeVisibile(logout);
-		logout.click();
+	public MenuBarPage clicklogOut() throws Throwable {
+		waitForElementToBeVisibile(logOut);
+		logOut.click();
 		return this;
 	}
 	

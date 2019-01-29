@@ -36,6 +36,16 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		Navigator.GetParticipationOperationsPage().loginAsRespectiveUser(createBackupData);
 		rightNavOperations.getAssignmentsPage();
 		Navigator.GetAssignmentsOperations().clickAllAsignmentsLink();
+		menuBarOperations.doLogOut();
+		
+	}
+	
+	@Test(priority=4,description = "MFD-225 ::Facilitation dashboard :Grading the assignment", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	public void FacilitationDashboardGradingTheAssignment(LinkedHashMap<String, ?> testData) throws Throwable {
+		
+		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
+		
+		
 		
 	}
 	

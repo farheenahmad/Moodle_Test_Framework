@@ -23,6 +23,27 @@ public class AssignmentsPage extends MenuBarPage {
 	@FindBy(css = "table[class='generaltable']")
 	private WebElement table;
 	
+	@FindBy(xpath = "//h1[text()='AutomationMoodleCourse']")
+	private WebElement automationMoodleCourseHeading;
+	
+	@FindBy(css = "button[type='submit']")
+	private WebElement addSubmissionButton;
+	
+	@FindBy(css = "div[class='dndupload-message']>div[class='dndupload-arrow']")
+	private WebElement dragAndDropButton;
+	
+	@FindBy(css = "input[name='repo_upload_file']")
+	private WebElement fileUploadInput;
+	
+	@FindBy(css = "button[class='fp-upload-btn btn-primary btn']")
+	private WebElement uploadThisFileButton;
+	
+	@FindBy(css = "input[id='id_submitbutton']")
+	private WebElement saveChangesButton;
+	
+	@FindBy(xpath = "//td[text()='Submitted for grading']")
+	private WebElement submittedForGradingText;
+	
 	public AssignmentsPage openAssigmentsLink(int n) throws Throwable {
 		waitForElementToBeVisibile(table);
 	   List<WebElement> elements=BrowserFactory.getDriver().findElements(By.xpath("//table[@class='generaltable']//tbody//tr//td[2]//a"));
@@ -31,5 +52,65 @@ public class AssignmentsPage extends MenuBarPage {
 	   return this;
 	}
 	
+	public AssignmentsPage completeAssignment() throws Throwable {
+		Thread.sleep(2000);
+		String currentWindow = BrowserFactory.getDriver().getWindowHandle();
+		for(String winHandle : BrowserFactory.getDriver().getWindowHandles()){
+			   if (BrowserFactory.getDriver().switchTo().window(winHandle).getTitle().equalsIgnoreCase("Assignment")) {
+			     waitForElementToBeVisibile(automationMoodleCourseHeading);
+			     clickAddSubmissionButton();
+			     clickDragAndDropButton();
+			     uploadFile();
+			     clickuploadThisFileButton();
+			     clicksaveChangesButton();
+			     verifySubmission();
+			     BrowserFactory.getDriver().close();
+			     break;
+			   } 
+			   else {
+				   BrowserFactory.getDriver().switchTo().window(currentWindow);
+			   } 
+	        
+			   BrowserFactory.getDriver().switchTo().window(currentWindow);
+	}
+		BrowserFactory.getDriver().switchTo().window(currentWindow);
+		return this;
+	}
+	
+	public AssignmentsPage clickAddSubmissionButton() throws Throwable {
+		waitForElementToBeVisibile(addSubmissionButton);
+		addSubmissionButton.click();
+	   return this;
+	}
+	
+	public AssignmentsPage clickDragAndDropButton() throws Throwable {
+		waitForElementToBeVisibile(dragAndDropButton);
+		dragAndDropButton.click();
+	   return this;
+	}
+	
+	public AssignmentsPage uploadFile() throws Throwable {
+		waitForElementToBeVisibile(fileUploadInput);
+		fileUploadInput.sendKeys("C:/Automation/TLH.txt");
+	   return this;
+	}
+	
+	public AssignmentsPage clickuploadThisFileButton() throws Throwable {
+		waitForElementToBeVisibile(uploadThisFileButton);
+		uploadThisFileButton.click();
+	   return this;
+	}
+	
+	public AssignmentsPage clicksaveChangesButton() throws Throwable {
+		waitForElementToBeVisibile(saveChangesButton);
+		saveChangesButton.click();
+	   return this;
+	}
+	
+	public AssignmentsPage verifySubmission() throws Throwable {
+		waitForElementToBeVisibile(submittedForGradingText);
+		
+	   return this;
+	}
 	
 }
