@@ -27,6 +27,7 @@ public class MenuBarPage extends BasePage {
 	
 	public MenuBarPage clicklogOut() throws Throwable {
 		waitForElementToBeVisibile(logOut);
+		waitForElementToBeClickable(logOut);
 		logOut.click();
 		return this;
 	}

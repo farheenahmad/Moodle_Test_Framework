@@ -9,7 +9,7 @@ public class AssignmentsOperations extends BaseOperations {
 	
 	public AssignmentsOperations clickAllAsignmentsLink() throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(AssignmentsPage.class).openAssigmentsLink(0).completeAssignment()
-		.openAssigmentsLink(1).completeAssignment().openAssigmentsLink(2).completeAssignment();
+		.openAssigmentsLink(1).completeAssignment().openAssigmentsLink(2).completeAssignment().refreshPage();
 		return this;	
 	}
 	

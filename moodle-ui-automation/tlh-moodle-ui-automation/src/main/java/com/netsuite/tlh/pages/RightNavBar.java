@@ -39,7 +39,7 @@ public class RightNavBar extends BasePage {
 	@FindBy(xpath = "//a[contains(text(),'Assignments')]")
 	private WebElement assignmentsLink;
 	
-	@FindBy(xpath = "//a[text()='Facilitation Manager Dashboard']")
+	@FindBy(xpath = "//*[text()='Facilitation Manager Dashboard']")
 	private WebElement facilitationManagerDashboardLink;
 	
 	

@@ -9,7 +9,7 @@ import com.netsuite.tlh.testdata.CreateBackupData;
 
 public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 	
-	@Test(priority=1,description = "MFD-221 ::MFD-222 ::Create a backup and Resore for the course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	@Test(priority=1,description = "MFD-221 ::MFD-222 ::Create a backup and Restore for the course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void CreateABackupAndRestoreTheCourse(LinkedHashMap<String, ?> testData) throws Throwable {
 
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);

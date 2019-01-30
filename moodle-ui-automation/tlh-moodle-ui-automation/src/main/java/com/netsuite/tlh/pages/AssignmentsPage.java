@@ -113,4 +113,10 @@ public class AssignmentsPage extends MenuBarPage {
 	   return this;
 	}
 	
+	public AssignmentsPage refreshPage() throws Throwable {
+		BrowserFactory.getDriver().navigate().refresh();
+		
+	   return this;
+	}
+	
 }

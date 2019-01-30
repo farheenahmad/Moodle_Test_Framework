@@ -6,6 +6,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
@@ -34,7 +35,7 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	@FindBy(css = "table[class='table']")
 	private WebElement table;
 	
-	@FindBy(css = "tr[role='radiogroup']>td")
+	@FindBy(xpath = "(//tr[@role='radiogroup']//td)[4]")
 	private WebElement grade;
 	
 	@FindBy(css = "button[name='savechanges']")
@@ -49,7 +50,8 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	@FindBy(css = "a[class='btn btn-primary signoff-button']")
 	private WebElement signOffButton;
 	
-	
+	@FindBy(xpath = "//label[contains(text(),'Grade:')]/ancestor::div[@class='col-md-3']//a//i")
+	private WebElement gradeMaximiseButton;
 
 	public FacilitationManagerDashboardPage selectDateSubmitted() throws Throwable {
 		waitForElementToBeVisibile(dateSubmittedInput);
@@ -84,10 +86,11 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	}
 	
 	public FacilitationManagerDashboardPage gradeAssignment() throws Throwable {
-		
+		Thread.sleep(2000);
 		String currentWindow = BrowserFactory.getDriver().getWindowHandle();
 		for(String winHandle : BrowserFactory.getDriver().getWindowHandles()){
 			   if (BrowserFactory.getDriver().switchTo().window(winHandle).getTitle().contains("Assignment:")) {
+				   Thread.sleep(2000);
 				  clickOneOfTheGrade();
 				  clicksaveChangesButton();
 				  waitForElementToBeVisibile(gradedText);
@@ -105,25 +108,23 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	}
 	
 	public FacilitationManagerDashboardPage clickOneOfTheGrade() throws Throwable {
-		waitForElementToBeVisibile(grade);
-		waitForElementToBeClickable(grade);
+		waitForElementToBeVisibile(gradeMaximiseButton);
+		waitForElementToBeClickable(gradeMaximiseButton);
+		gradeMaximiseButton.click();
 		List <WebElement> elements=BrowserFactory.getDriver().findElements(By.cssSelector("tr[role='radiogroup']"));
-		if(elements.size()==1){
-			Thread.sleep(2000);
-			WebElement ele=BrowserFactory.getDriver().findElement(By.xpath("((//tr[@role='radiogroup'])[1]//td)[4]"));
-			waitForElementToBeClickable(ele);
-			ele.click();
-		}
-		else
 		for(int i=1;i<=elements.size();i++){
+			Thread.sleep(1000);
 			BrowserFactory.getDriver().findElement(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]")).click();
+			Thread.sleep(2000);
 		}
-		
+		gradeMaximiseButton.click();
 		return this;
 	}
 	
 	public FacilitationManagerDashboardPage clicksaveChangesButton() throws Throwable {
+		
 		waitForElementToBeVisibile(saveChangesButton);
+		waitForElementToBeClickable(saveChangesButton);
 		saveChangesButton.click();
 		return this;
 	}
