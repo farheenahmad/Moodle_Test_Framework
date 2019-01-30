@@ -24,13 +24,13 @@ public class LoginPage extends BasePage {
 	@FindBy(css = "input[value='Log in']")
 	private WebElement loginBtn;
 	
-	@FindBy(id = "username")
+	@FindBy(css = "input[id='username']")
 	private WebElement secondUserName;
 
-	@FindBy(id = "password")
+	@FindBy(css = "input[id='password']")
 	private WebElement secondPassword;
 
-	@FindBy(id = "loginbtn")
+	@FindBy(css = "button[id='loginbtn']")
 	private WebElement secondLoginBtn;
 
 
@@ -86,7 +86,6 @@ public class LoginPage extends BasePage {
 		enterSecondUserName(userName);
 		enterSecondPassword(passWord);
 		clickSecondLoginButton();
-			
 		return this;
 			
 	}

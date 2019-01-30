@@ -2,10 +2,12 @@ package com.netsuite.tlh.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import com.framework.base.BrowserFactory;
 import com.framework.exceptions.DriverNotInitializedException;
@@ -41,6 +43,11 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	@FindBy(xpath = "//div[text()='Graded']")
 	private WebElement gradedText;
 	
+	@FindBy(css = "select[name='assignmentStatus']")
+	private WebElement assignmentStatusDropdown;
+	
+	@FindBy(css = "a[class='btn btn-primary signoff-button']")
+	private WebElement signOffButton;
 	
 	
 
@@ -118,6 +125,25 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	public FacilitationManagerDashboardPage clicksaveChangesButton() throws Throwable {
 		waitForElementToBeVisibile(saveChangesButton);
 		saveChangesButton.click();
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage selectAssignmentStatus(String Status) throws Throwable {
+		waitForElementToBeVisibile(assignmentStatusDropdown);
+		waitForElementToBeClickable(assignmentStatusDropdown);
+		Select sel= new Select(assignmentStatusDropdown);
+		sel.selectByVisibleText(Status);
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage clickOnSignOffButton() throws Throwable {
+		waitForElementToBeVisibile(signOffButton);
+		waitForElementToBeClickable(signOffButton);
+		signOffButton.click();
+		Thread.sleep(2000);
+		Alert alert = BrowserFactory.getDriver().switchTo().alert();
+		Thread.sleep(2000);
+		alert.accept();
 		return this;
 	}
 

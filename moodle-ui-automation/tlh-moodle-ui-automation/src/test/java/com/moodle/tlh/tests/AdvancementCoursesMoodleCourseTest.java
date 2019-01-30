@@ -20,7 +20,7 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		
 	}
 	
-	@Test(priority=2,description = "MFD-223 ::Module 3:Enrolling the Users", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	@Test(priority=2,description = "MFD-223 ::Enrolling the Users", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void EnrollingTheUsers(LinkedHashMap<String, ?> testData) throws Throwable {
 
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
@@ -29,7 +29,7 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		.enrollFacilitator(createBackupData).enrollFacilitationManager(createBackupData);
 		
 	}
-	@Test(priority=3,description = "MFD-224 ::Module 4: Login as student and Complete the assignment", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	@Test(priority=3,description = "MFD-224 ::Login as student and Complete the assignment", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void LoginAsStudentAndCompleteAssignment(LinkedHashMap<String, ?> testData) throws Throwable {
 		
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
@@ -41,34 +41,18 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		
 	}
 	
-	@Test(priority=4,description = "MFD-225 ::Facilitation dashboard :Grading the assignment", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	@Test(priority=4,description = "MFD-225 ::MFD-226:Facilitation dashboard :Grading and Sign Off the assignment", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void FacilitationDashboardGradingTheAssignment(LinkedHashMap<String, ?> testData) throws Throwable {
 		
-		//CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
+		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
 		loginOperations.doSecondLogin(userName, passWord);
 		rightNavOperations.getFacilitationManagerDashboard();
-		Navigator.FacilitationManagerDashboardOperations().gradeAssigment();
-		
+		Navigator.FacilitationManagerDashboardOperations().gradeAssigment().signOff(createBackupData);	
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//Completed
-	//@Test(priority=4,description = "MFD-227 ::Module 7: Deleting the respective course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	@Test(priority=5,description = "MFD-227 :: Deleting the respective course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void DeletingTheRespectiveCourse(LinkedHashMap<String, ?> testData) throws Throwable {
 	
 		rightNavOperations.getCoursesPage();

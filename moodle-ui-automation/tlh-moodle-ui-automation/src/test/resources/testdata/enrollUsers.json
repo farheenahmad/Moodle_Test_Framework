@@ -6,7 +6,8 @@
 			"userName3":"Admin User",
 			"role1":"Student",
 			"role2":"Facilitator",
-			"role3":"Facilitation Manager"
+			"role3":"Facilitation Manager",
+			"status":"Graded"
 			
 		}
 	}

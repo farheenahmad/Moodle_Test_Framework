@@ -12,9 +12,15 @@ public class CreateBackupData implements ITestData {
 	private String role1;
 	private String role2;
 	private String role3;
+	private String status;
 	
 	
-	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getUserName1() {
 		return userName1;
 	}
