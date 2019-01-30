@@ -3,7 +3,6 @@ package com.moodle.tlh.tests;
 import java.util.LinkedHashMap;
 import org.testng.annotations.Test;
 import com.framework.utils.Utility;
-import com.netsuite.tlh.operations.FacilitationManagerDashboardOperations;
 import com.netsuite.tlh.operations.Navigator;
 import com.netsuite.tlh.testdata.CreateBackupData;
 
@@ -33,7 +32,6 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 	public void LoginAsStudentAndCompleteAssignment(LinkedHashMap<String, ?> testData) throws Throwable {
 		
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
-		
 		Navigator.GetParticipationOperationsPage().loginAsRespectiveUser(createBackupData);
 		rightNavOperations.getAssignmentsPage();
 		Navigator.GetAssignmentsOperations().clickAllAsignmentsLink();
@@ -51,7 +49,6 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		
 	}
 	
-	//Completed
 	@Test(priority=5,description = "MFD-227 :: Deleting the respective course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void DeletingTheRespectiveCourse(LinkedHashMap<String, ?> testData) throws Throwable {
 	
