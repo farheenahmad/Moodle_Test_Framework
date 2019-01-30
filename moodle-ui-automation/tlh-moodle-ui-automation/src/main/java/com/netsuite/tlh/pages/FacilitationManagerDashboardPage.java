@@ -77,7 +77,7 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	}
 	
 	public FacilitationManagerDashboardPage gradeAssignment() throws Throwable {
-		Thread.sleep(2000);
+		
 		String currentWindow = BrowserFactory.getDriver().getWindowHandle();
 		for(String winHandle : BrowserFactory.getDriver().getWindowHandles()){
 			   if (BrowserFactory.getDriver().switchTo().window(winHandle).getTitle().contains("Assignment:")) {
@@ -99,9 +99,10 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	
 	public FacilitationManagerDashboardPage clickOneOfTheGrade() throws Throwable {
 		waitForElementToBeVisibile(grade);
+		waitForElementToBeClickable(grade);
 		List <WebElement> elements=BrowserFactory.getDriver().findElements(By.cssSelector("tr[role='radiogroup']"));
-		System.out.println(elements.size());
 		if(elements.size()==1){
+			Thread.sleep(2000);
 			WebElement ele=BrowserFactory.getDriver().findElement(By.xpath("((//tr[@role='radiogroup'])[1]//td)[4]"));
 			waitForElementToBeClickable(ele);
 			ele.click();
