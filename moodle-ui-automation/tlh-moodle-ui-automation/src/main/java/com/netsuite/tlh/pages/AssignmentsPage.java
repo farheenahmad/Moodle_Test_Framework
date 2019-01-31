@@ -23,7 +23,7 @@ public class AssignmentsPage extends MenuBarPage {
 	@FindBy(css = "table[class='generaltable']")
 	private WebElement table;
 	
-	@FindBy(xpath = "//h1[text()='AutomationMoodleCourse']")
+	@FindBy(xpath = "//h1[contains(text(),'AutomationMoodleCourse')]")
 	private WebElement automationMoodleCourseHeading;
 	
 	@FindBy(css = "button[type='submit']")

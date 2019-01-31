@@ -41,6 +41,9 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	@FindBy(css = "button[name='savechanges']")
 	private WebElement saveChangesButton;
 	
+	@FindBy(css = "button[name='saveandshownext']")
+	private WebElement saveandShowNextButton;
+	
 	@FindBy(xpath = "//div[text()='Graded']")
 	private WebElement gradedText;
 	
@@ -90,9 +93,24 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		String currentWindow = BrowserFactory.getDriver().getWindowHandle();
 		for(String winHandle : BrowserFactory.getDriver().getWindowHandles()){
 			   if (BrowserFactory.getDriver().switchTo().window(winHandle).getTitle().contains("Assignment:")) {
-				   Thread.sleep(2000);
 				  clickOneOfTheGrade();
 				  clicksaveChangesButton();
+				  try{
+				  if(gradedText.isDisplayed()==false){
+					  clickOneOfTheGrade();
+					  clicksaveAndShowNewButton();  
+				  }
+				  }
+				  catch(Exception e){ 
+					  waitForElementToBePresent(By.cssSelector("input[value='Ok']"));
+					  waitForElementToBeClickable(By.cssSelector("input[value='Ok']"));
+					  WebElement ele=BrowserFactory.getDriver().findElement(By.cssSelector("input[value='Ok']"));
+		
+					  ele.click();
+					  clickOneOfTheGrade();
+					  clicksaveAndShowNewButton(); 
+				  }
+				  
 				  waitForElementToBeVisibile(gradedText);
 				  BrowserFactory.getDriver().close();
 			     break;
@@ -100,7 +118,6 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 			   else {
 				   BrowserFactory.getDriver().switchTo().window(currentWindow);
 			   } 
-	        
 			   BrowserFactory.getDriver().switchTo().window(currentWindow);
 	}
 		BrowserFactory.getDriver().switchTo().window(currentWindow);
@@ -111,13 +128,15 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		waitForElementToBeVisibile(gradeMaximiseButton);
 		waitForElementToBeClickable(gradeMaximiseButton);
 		gradeMaximiseButton.click();
+		waitForElementToBePresent(By.cssSelector("tr[role='radiogroup']"));
 		List <WebElement> elements=BrowserFactory.getDriver().findElements(By.cssSelector("tr[role='radiogroup']"));
 		for(int i=1;i<=elements.size();i++){
-			Thread.sleep(1000);
+			System.out.println();
+			waitForElementToBePresent(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]"));
 			BrowserFactory.getDriver().findElement(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]")).click();
-			Thread.sleep(2000);
+			
 		}
-		gradeMaximiseButton.click();
+		
 		return this;
 	}
 	
@@ -126,6 +145,14 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		waitForElementToBeVisibile(saveChangesButton);
 		waitForElementToBeClickable(saveChangesButton);
 		saveChangesButton.click();
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage clicksaveAndShowNewButton() throws Throwable {
+		
+		waitForElementToBeVisibile(saveandShowNextButton);
+		waitForElementToBeClickable(saveandShowNextButton);
+		saveandShowNextButton.click();
 		return this;
 	}
 	
@@ -141,9 +168,9 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		waitForElementToBeVisibile(signOffButton);
 		waitForElementToBeClickable(signOffButton);
 		signOffButton.click();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		Alert alert = BrowserFactory.getDriver().switchTo().alert();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		alert.accept();
 		return this;
 	}
