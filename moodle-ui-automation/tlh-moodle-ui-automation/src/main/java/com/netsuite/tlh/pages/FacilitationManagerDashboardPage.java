@@ -47,6 +47,9 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	@FindBy(xpath = "//div[text()='Graded']")
 	private WebElement gradedText;
 	
+	@FindBy(css = "td[class='graded']")
+	private WebElement gradedTextEndPage;
+	
 	@FindBy(css = "select[name='assignmentStatus']")
 	private WebElement assignmentStatusDropdown;
 	
@@ -130,8 +133,8 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		gradeMaximiseButton.click();
 		waitForElementToBePresent(By.cssSelector("tr[role='radiogroup']"));
 		List <WebElement> elements=BrowserFactory.getDriver().findElements(By.cssSelector("tr[role='radiogroup']"));
-		for(int i=1;i<=elements.size();i++){
-			System.out.println();
+		for(int i=1;i<=elements.size();i++){	
+			System.out.print("");
 			waitForElementToBePresent(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]"));
 			BrowserFactory.getDriver().findElement(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]")).click();
 			
@@ -161,6 +164,13 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		waitForElementToBeClickable(assignmentStatusDropdown);
 		Select sel= new Select(assignmentStatusDropdown);
 		sel.selectByVisibleText(Status);
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage checkIfGraded() throws Throwable {
+		waitForElementToBeVisibile(gradedTextEndPage);
+		waitForElementToBeClickable(gradedTextEndPage);
+		
 		return this;
 	}
 	

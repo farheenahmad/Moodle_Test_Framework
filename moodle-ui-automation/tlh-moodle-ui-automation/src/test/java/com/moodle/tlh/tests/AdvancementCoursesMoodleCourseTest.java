@@ -34,12 +34,15 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
 		Navigator.GetParticipationOperationsPage().loginAsRespectiveUser(createBackupData);
 		rightNavOperations.getAssignmentsPage();
+		
+		
+		
 		Navigator.GetAssignmentsOperations().clickAllAsignmentsLink();
 		menuBarOperations.doLogOut();
 		
 	}
 	
-	@Test(priority=4,description = "MFD-225 ::MFD-226:Facilitation dashboard :Grading and Sign Off the assignment", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	//@Test(priority=4,description = "MFD-225 ::MFD-226:Facilitation dashboard :Grading and Sign Off the assignment", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void FacilitationDashboardGradingTheAssignment(LinkedHashMap<String, ?> testData) throws Throwable {
 		
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
@@ -49,7 +52,7 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		
 	}
 	
-	@Test(priority=5,description = "MFD-227 :: Deleting the respective course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	//@Test(priority=5,description = "MFD-227 :: Deleting the respective course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void DeletingTheRespectiveCourse(LinkedHashMap<String, ?> testData) throws Throwable {
 	
 		rightNavOperations.getCoursesPage();

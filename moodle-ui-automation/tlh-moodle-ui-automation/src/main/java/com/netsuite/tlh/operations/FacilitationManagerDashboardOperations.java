@@ -15,7 +15,7 @@ public class FacilitationManagerDashboardOperations extends BaseOperations {
 	
 	public FacilitationManagerDashboardOperations signOff(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(FacilitationManagerDashboardPage.class).refreshPage().selectAssignmentStatus(createBackupData.getStatus())
-		.clickFilterButton().clickOnSignOffButton();
+		.clickFilterButton().checkIfGraded().clickOnSignOffButton();
 		return this;	
 	}
 	
