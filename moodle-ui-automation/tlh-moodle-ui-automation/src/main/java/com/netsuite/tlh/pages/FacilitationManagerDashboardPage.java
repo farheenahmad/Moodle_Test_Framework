@@ -134,7 +134,7 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		waitForElementToBePresent(By.cssSelector("tr[role='radiogroup']"));
 		List <WebElement> elements=BrowserFactory.getDriver().findElements(By.cssSelector("tr[role='radiogroup']"));
 		for(int i=1;i<=elements.size();i++){	
-			System.out.print("");
+			Thread.sleep(2000);
 			waitForElementToBePresent(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]"));
 			BrowserFactory.getDriver().findElement(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]")).click();
 			

@@ -44,11 +44,15 @@ public class AssignmentsPage extends MenuBarPage {
 	@FindBy(xpath = "//td[text()='Submitted for grading']")
 	private WebElement submittedForGradingText;
 	
-	public AssignmentsPage openAssigmentsLink(int n) throws Throwable {
+	public AssignmentsPage openAssigmentsLink() throws Throwable {
 		waitForElementToBeVisibile(table);
 	   List<WebElement> elements=BrowserFactory.getDriver().findElements(By.xpath("//table[@class='generaltable']//tbody//tr//td[2]//a"));
-	  String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN); 
-	  elements.get(n).sendKeys(selectLinkOpeninNewTab);     
+	 for(int i=0;i<elements.size();i++){
+		 String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN); 
+		  elements.get(i).sendKeys(selectLinkOpeninNewTab); 
+		  completeAssignment();
+		 
+	 }       
 	   return this;
 	}
 	
