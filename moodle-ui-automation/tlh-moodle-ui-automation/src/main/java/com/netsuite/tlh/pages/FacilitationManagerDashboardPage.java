@@ -82,12 +82,18 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	}
 	
 	public FacilitationManagerDashboardPage openAssigmentsLink() throws Throwable {
-		BrowserFactory.getDriver().navigate().refresh();
 		waitForElementToBeVisibile(table);
-	  WebElement elements=BrowserFactory.getDriver().findElement(By.xpath("//td[@class='text-danger bold']/ancestor::tr//td[3]//a"));
-	  waitForElementToBeClickable(elements);
-	  String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN); 
-	  elements.sendKeys(selectLinkOpeninNewTab);     
+		waitForElementToBeClickable(table);
+	  List <WebElement> elements=BrowserFactory.getDriver().findElements(By.xpath("//td[@class='text-danger bold']/ancestor::tr//td[3]//a"));
+	  
+	  for(int i=1;i<=elements.size();i++){
+		  BrowserFactory.getDriver().navigate().refresh();
+		  WebElement element=BrowserFactory.getDriver().findElement(By.xpath("//td[@class='text-danger bold']/ancestor::tr//td[3]//a"));
+		  waitForElementToBeClickable(element);
+		 // String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN); 
+		  element.sendKeys(Keys.chord(Keys.CONTROL,Keys.RETURN));
+		  gradeAssignment();
+	  }   
 	   return this;
 	}
 	
@@ -136,10 +142,8 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		for(int i=1;i<=elements.size();i++){	
 			Thread.sleep(2000);
 			waitForElementToBePresent(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]"));
-			BrowserFactory.getDriver().findElement(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]")).click();
-			
-		}
-		
+			BrowserFactory.getDriver().findElement(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]")).click();	
+		}	
 		return this;
 	}
 	

@@ -34,10 +34,7 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
 		Navigator.GetParticipationOperationsPage().loginAsRespectiveUser(createBackupData);
 		rightNavOperations.getAssignmentsPage();
-		
-		
-		
-		Navigator.GetAssignmentsOperations().clickAllAsignmentsLink();
+		Navigator.GetAssignmentsOperations().completeAssingments();
 		menuBarOperations.doLogOut();
 		
 	}
