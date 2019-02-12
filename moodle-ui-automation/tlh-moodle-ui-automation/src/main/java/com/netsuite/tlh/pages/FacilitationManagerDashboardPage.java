@@ -47,7 +47,7 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	@FindBy(xpath = "//div[text()='Graded']")
 	private WebElement gradedText;
 	
-	@FindBy(css = "td[class='graded']")
+	@FindBy(xpath = "//td[contains(text(),'Graded')]")
 	private WebElement gradedTextEndPage;
 	
 	@FindBy(css = "select[name='assignmentStatus']")
@@ -104,20 +104,19 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 			   if (BrowserFactory.getDriver().switchTo().window(winHandle).getTitle().contains("Assignment:")) {
 				  clickOneOfTheGrade();
 				  clicksaveChangesButton();
+				  Thread.sleep(3000);
 				  try{
-				  if(gradedText.isDisplayed()==false){
-					  clickOneOfTheGrade();
-					  clicksaveAndShowNewButton();  
+				  if(gradedText.isDisplayed()==false){ 
 				  }
 				  }
 				  catch(Exception e){ 
+					  clickOneOfTheGrade();
+					  clicksaveAndShowNewButton(); 
 					  waitForElementToBePresent(By.cssSelector("input[value='Ok']"));
 					  waitForElementToBeClickable(By.cssSelector("input[value='Ok']"));
 					  WebElement ele=BrowserFactory.getDriver().findElement(By.cssSelector("input[value='Ok']"));
-		
 					  ele.click();
-					  clickOneOfTheGrade();
-					  clicksaveAndShowNewButton(); 
+					  
 				  }
 				  
 				  waitForElementToBeVisibile(gradedText);
