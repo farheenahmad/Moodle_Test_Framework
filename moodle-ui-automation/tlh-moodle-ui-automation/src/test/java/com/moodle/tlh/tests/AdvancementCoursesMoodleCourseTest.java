@@ -53,6 +53,7 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 	public void DeletingTheRespectiveCourse(LinkedHashMap<String, ?> testData) throws Throwable {
 	
 		rightNavOperations.getCoursesPage();
+		
 		Navigator.GetCoursePageOperations().deleteRespectiveCourse();
 		
 	}
