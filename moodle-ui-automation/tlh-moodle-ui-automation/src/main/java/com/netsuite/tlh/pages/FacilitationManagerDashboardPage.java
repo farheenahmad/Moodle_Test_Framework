@@ -106,6 +106,7 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 				  clicksaveChangesButton();
 				  Thread.sleep(3000);
 				  try{
+					  waitForElementToBeVisibile(gradedText);
 				  if(gradedText.isDisplayed()==false){ 
 				  }
 				  }
