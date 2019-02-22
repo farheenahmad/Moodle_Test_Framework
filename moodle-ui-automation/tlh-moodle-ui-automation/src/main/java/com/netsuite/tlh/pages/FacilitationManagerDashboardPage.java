@@ -58,6 +58,16 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	
 	@FindBy(xpath = "//label[contains(text(),'Grade:')]/ancestor::div[@class='col-md-3']//a//i")
 	private WebElement gradeMaximiseButton;
+	
+	@FindBy(css = "input[name='dateGraded']")
+	private WebElement dateGradedInput;
+	
+	@FindBy(xpath = "(//span[@class='flatpickr-day today'])[2]")
+	private WebElement todaysGradedDate;
+	
+	@FindBy(css = "span[class='flatpickr-day today selected endRange inRange']")
+	private WebElement todaysGradedDate2;
+	
 
 	public FacilitationManagerDashboardPage selectDateSubmitted() throws Throwable {
 		waitForElementToBeVisibile(dateSubmittedInput);
@@ -68,6 +78,17 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		todaysDate2.click();
 		return this;
 	}
+	
+	public FacilitationManagerDashboardPage selectDateGraded() throws Throwable {
+		waitForElementToBeVisibile(dateGradedInput);
+		dateGradedInput.click();
+		waitForElementToBeVisibile(todaysGradedDate);
+		todaysGradedDate.click();
+		waitForElementToBeClickable(todaysGradedDate2);
+		todaysGradedDate2.click();
+		return this;
+	}
+	
 	
 	public FacilitationManagerDashboardPage clickFilterButton() throws Throwable {
 		waitForElementToBeVisibile(filterButton);
@@ -96,6 +117,13 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	  }   
 	   return this;
 	}
+	
+	public FacilitationManagerDashboardPage verifyTableIspresent() throws Throwable {
+		waitForElementToBeVisibile(table);
+		waitForElementToBeClickable(table);
+		return this;
+	}
+	
 	
 	public FacilitationManagerDashboardPage gradeAssignment() throws Throwable {
 		Thread.sleep(2000);

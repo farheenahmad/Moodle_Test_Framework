@@ -19,4 +19,9 @@ public class FacilitationManagerDashboardOperations extends BaseOperations {
 		return this;	
 	}
 	
+	public FacilitationManagerDashboardOperations verifyDateGradedFilter(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(FacilitationManagerDashboardPage.class).selectDateGraded().selectAssignmentStatus(createBackupData.getStatus()).clickFilterButton();
+		return this;	
+	}
+	
 }

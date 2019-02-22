@@ -18,7 +18,7 @@ public class RightNavBar extends BasePage {
 		super();
 	}
 
-	@FindBy(css = "a[title='Health, Wellness, and Fitness: A New Look']")
+	@FindBy(css = "a[title='Understanding Our Universe: An Introduction to Astronomy']")
 	private WebElement fitnessPovCourse;
 	
 	@FindBy(xpath = "//h1[text()='Health, Wellness, and Fitness: A New Look']")
@@ -27,7 +27,7 @@ public class RightNavBar extends BasePage {
 	@FindBy(css = "i[class='icon fa fa-file-zip-o fa-fw navicon']")
 	private WebElement backUpLink;
 	
-	@FindBy(xpath = "//h1[text()='Backup course: FITNESS-POV']")
+	@FindBy(xpath = "//h1[contains(text(),'Backup course:')]")
 	private WebElement backUpCoursePageHeading;
 	
 	@FindBy(xpath = "//a[text()='Participants']")
