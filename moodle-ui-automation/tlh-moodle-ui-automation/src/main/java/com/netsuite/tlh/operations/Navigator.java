@@ -11,7 +11,7 @@ public class Navigator extends BaseOperations {
 	}
 	
 	public static RestorePageOperations doRestore(CreateBackupData createBackupData) throws Throwable {
-		return OperationFactory.getOperation(RestorePageOperations.class).DoTheRestore(createBackupData);
+		return OperationFactory.getOperation(RestorePageOperations.class).DoTheRestore2(createBackupData);
 	}
 	
 	public static ParticipantsPageOperations GetParticipationOperationsPage() throws Throwable {

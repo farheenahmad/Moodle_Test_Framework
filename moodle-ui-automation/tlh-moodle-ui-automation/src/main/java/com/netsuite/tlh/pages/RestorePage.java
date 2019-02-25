@@ -40,6 +40,48 @@ public class RestorePage extends BasePage {
 	@FindBy(css = "input[value='Perform restore']")
 	private WebElement performRestoreButton;
 	
+	@FindBy(css = "input[name='backupfilechoose']")
+	private WebElement chooseFileButton;
+	
+	@FindBy(css = "input[name='repo_upload_file']")
+	private WebElement uploadFileOption;
+	
+	@FindBy(css = "button[class='fp-upload-btn btn-primary btn']")
+	private WebElement uploadThisFileButton;
+	
+	@FindBy(css = "input[name='submitbutton']")
+	private WebElement restoreButton;
+	
+	@FindBy(css = "input[id='id_setting_root_users']")
+	private WebElement enrolledUserCheckBox;
+	
+	public RestorePage clickOnRestoreButton() throws Throwable {
+		waitForElementToBeClickable(restoreButton);
+		waitForElementToBeVisibile(restoreButton);
+		restoreButton.click();
+		return this;
+	}
+	
+	public RestorePage clickOnchooseFileButton() throws Throwable {
+		waitForElementToBeClickable(chooseFileButton);
+		waitForElementToBeVisibile(chooseFileButton);
+		chooseFileButton.click();
+		return this;
+	}
+	
+	public RestorePage uploadFile() throws Throwable {
+		waitForElementToBeClickable(uploadFileOption);
+		waitForElementToBeVisibile(uploadFileOption);
+		uploadFileOption.sendKeys(System.getProperty("user.dir")+"/src/test/resources/testdata/backup-moodle2-course-1401-thepsychofspor-ce-pov-20190107-1229.mbz");
+		return this;
+	}
+	
+	public RestorePage clickOnUploadThisFileButton() throws Throwable {
+		waitForElementToBeClickable(uploadThisFileButton);
+		waitForElementToBeVisibile(uploadThisFileButton);
+		uploadThisFileButton.click();
+		return this;
+	}
 	
 	public RestorePage clickOnRestoreLink() throws Throwable {
 		waitForElementToBeClickable(restoreLink);
@@ -99,4 +141,12 @@ public class RestorePage extends BasePage {
 		performRestoreButton.click();
 		return this;
 	}
+	
+	public RestorePage removeEnrolledUser() throws Throwable {
+		waitForElementToBeClickable(enrolledUserCheckBox);
+		waitForElementToBeVisibile(enrolledUserCheckBox);
+		enrolledUserCheckBox.click();
+		return this;
+	}
+	
 }

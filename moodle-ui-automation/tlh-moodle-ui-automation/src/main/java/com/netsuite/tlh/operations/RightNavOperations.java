@@ -37,4 +37,10 @@ public class RightNavOperations extends BaseOperations {
 		return this;	
 	}
 	
+	public RightNavOperations getRestoreCoursePage() throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnSiteAdministrationLink().clickOnSiteAdministrationCourseLink()
+		.clickOnSiteAdministrationRestoreCourseLink();
+		return this;	
+	}
+	
 }

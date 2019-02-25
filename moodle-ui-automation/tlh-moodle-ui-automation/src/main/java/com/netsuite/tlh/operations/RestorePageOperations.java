@@ -16,6 +16,15 @@ public class RestorePageOperations extends BaseOperations {
 		
 	}
 	
+	public RestorePageOperations DoTheRestore2(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(RestorePage.class).clickOnchooseFileButton().uploadFile().clickOnUploadThisFileButton()
+		.clickOnRestoreButton().clickOnBottomContinueButton().clickOnMiscellaneousOption().clickOnContinueButton().removeEnrolledUser().clickOnNextButton()
+		.enterCourseName(createBackupData.getCourseName()).enterCourseShortName(createBackupData.getCourseShortName())
+		.clickOnNextButton().clickOnPerformRestore().clickOnBottomContinueButton();
+		return this;
+		
+	}
+	
 	
 	
 	

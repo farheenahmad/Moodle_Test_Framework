@@ -13,8 +13,8 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 	public void CreateABackupAndRestoreTheCourse(LinkedHashMap<String, ?> testData) throws Throwable {
 
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
-		rightNavOperations.getFitnessPovCoursePage().getBackUpPage();
-		Navigator.gotoBackUpPage();
+		//rightNavOperations.getFitnessPovCoursePage().getBackUpPage();//Navigator.gotoBackUpPage();//Navigator.doRestore(createBackupData);
+		rightNavOperations.getRestoreCoursePage();
 		Navigator.doRestore(createBackupData);
 		
 	}
@@ -58,7 +58,16 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		
 	}
 	
-	@Test(priority=7,description = "MFD-227 :: Deleting the respective course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	//@Test(priority=6,description = "MFD-245 ::test automation for rubric view", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	public void testAutomationForRubricView(LinkedHashMap<String, ?> testData) throws Throwable {
+		
+		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
+		rightNavOperations.getFacilitationManagerDashboard();
+			
+		
+	}
+	
+	//@Test(priority=7,description = "MFD-227 :: Deleting the respective course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void DeletingTheRespectiveCourse(LinkedHashMap<String, ?> testData) throws Throwable {
 	
 		rightNavOperations.getCoursesPage();

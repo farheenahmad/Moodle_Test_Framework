@@ -42,6 +42,14 @@ public class RightNavBar extends BasePage {
 	@FindBy(xpath = "//*[text()='Facilitation Manager Dashboard']")
 	private WebElement facilitationManagerDashboardLink;
 	
+	@FindBy(xpath = "//span[contains(text(),'Site administration')]")
+	private WebElement siteAdministrationLink;
+	
+	@FindBy(xpath = "//p[@id='courses_tree_item']//span[contains(text(),'Courses')]")
+	private WebElement siteAdministrationCourseLink;
+	
+	@FindBy(xpath = "//span[contains(text(),'Restore course')]")
+	private WebElement siteAdministrationRestoreCourseLink;
 	
 
 	public RightNavBar clickOnFitnessPovCourse() throws Throwable {
@@ -99,11 +107,30 @@ public class RightNavBar extends BasePage {
 		return this;
 	}
 	
-public RightNavBar clickOnFacilitationManagerDashboardLink() throws Throwable {
+	public RightNavBar clickOnFacilitationManagerDashboardLink() throws Throwable {
 		
 		waitForElementToBeVisibile(facilitationManagerDashboardLink);
 		waitForElementToBeClickable(facilitationManagerDashboardLink);
 		facilitationManagerDashboardLink.click();
 		return this;
 	}
+
+	public RightNavBar clickOnSiteAdministrationLink() throws Throwable {
+		waitForElementToBeVisibile(siteAdministrationLink);
+		siteAdministrationLink.click();
+		return this;
+	}
+	
+	public RightNavBar clickOnSiteAdministrationCourseLink() throws Throwable {
+		waitForElementToBeVisibile(siteAdministrationCourseLink);
+		siteAdministrationCourseLink.click();
+		return this;
+		}
+	
+	public RightNavBar clickOnSiteAdministrationRestoreCourseLink() throws Throwable {
+		waitForElementToBeVisibile(siteAdministrationRestoreCourseLink);
+		siteAdministrationRestoreCourseLink.click();
+		return this;
+		}
+	
 }
