@@ -68,7 +68,20 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	@FindBy(css = "span[class='flatpickr-day today selected endRange inRange']")
 	private WebElement todaysGradedDate2;
 	
+	@FindBy(xpath = "//h3[contains(text(),'Previous Grades')]")
+	private WebElement previoudGrades;
+	
+	@FindBy(css = "table[class='criteria']>tbody>tr")
+	private WebElement previoudGradesTable;
+	
 
+	public FacilitationManagerDashboardPage verifyRubricView() throws Throwable {
+		waitForElementToBeVisibile(previoudGrades);
+		waitForElementToBeVisibile(previoudGradesTable);
+		
+		return this;
+	}
+	
 	public FacilitationManagerDashboardPage selectDateSubmitted() throws Throwable {
 		waitForElementToBeVisibile(dateSubmittedInput);
 		dateSubmittedInput.click();
@@ -111,8 +124,16 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		  BrowserFactory.getDriver().navigate().refresh();
 		  WebElement element=BrowserFactory.getDriver().findElement(By.xpath("//td[@class='text-danger bold']/ancestor::tr//td[3]//a"));
 		  waitForElementToBeClickable(element);
-		 // String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN); 
 		  element.sendKeys(Keys.chord(Keys.CONTROL,Keys.RETURN));
+		  if(i==2){
+			  Thread.sleep(2000);
+				String currentWindow = BrowserFactory.getDriver().getWindowHandle();
+				for(String winHandle : BrowserFactory.getDriver().getWindowHandles()){
+					   if (BrowserFactory.getDriver().switchTo().window(winHandle).getTitle().contains("Assignment:")) {
+						   verifyRubricView();   	   
+					   }}  
+				BrowserFactory.getDriver().switchTo().window(currentWindow);
+		  }
 		  gradeAssignment();
 	  }   
 	   return this;
