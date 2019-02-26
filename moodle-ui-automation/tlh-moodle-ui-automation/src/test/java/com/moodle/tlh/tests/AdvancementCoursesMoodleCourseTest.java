@@ -39,7 +39,7 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		
 	}
 	
-	@Test(priority=4,description = "MFD-225 ::MFD-226:MFD-245:Facilitation dashboard :Grading and Sign Off the assignment", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	@Test(priority=4,description = "MFD-225 ::MFD-226:MFD-245:Facilitation dashboard :Grading and Sign Off the assignment,Verify Rubic View", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void FacilitationDashboardGradingTheAssignment(LinkedHashMap<String, ?> testData) throws Throwable {
 		
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
