@@ -9,31 +9,36 @@ import com.netsuite.tlh.testdata.CreateBackupData;
 
 public class ParticipantsPageOperations extends BaseOperations {
 
-	public ParticipantsPageOperations enrollStudent(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
-		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnEnrolUsers().selectUsers(createBackupData.getUserName1())
+	public ParticipantsPageOperations enrollStudent(CreateBackupData createBackupData, String Username) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnEnrolUsers().selectUsers(Username)
 		.selectRoles(createBackupData.getRole1()).clickOnEnrolUsersSaveButton();
 		return this;
 		
 	}
 	
-	public ParticipantsPageOperations enrollFacilitator(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
-		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnEnrolUsers().selectUsers(createBackupData.getUserName2())
+	public ParticipantsPageOperations enrollFacilitator(CreateBackupData createBackupData, String Username) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnEnrolUsers().selectUsers(Username)
 		.selectRoles(createBackupData.getRole2()).clickOnEnrolUsersSaveButton();
 		return this;
 		
 	}
 	
-	public ParticipantsPageOperations enrollFacilitationManager(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
-		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnEnrolUsers()
-		.selectUsers(createBackupData.getUserName3())
-		.selectRoles(createBackupData.getRole3())
-		.clickOnEnrolUsersSaveButton();
+	public ParticipantsPageOperations enrollFacilitationManager(CreateBackupData createBackupData, String Username) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnEnrolUsers().selectUsers(Username)
+		.selectRoles(createBackupData.getRole3()).clickOnEnrolUsersSaveButton();
 		return this;
 		
 	}
 	
-	public ParticipantsPageOperations loginAsRespectiveUser(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
-		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnRespectiveUser(createBackupData.getRole1()).clickOnLoginAs().clickContinue();
+	public ParticipantsPageOperations loginAsRespectiveUser(CreateBackupData createBackupData, String Username) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnRespectiveUser(createBackupData.getRole1(),Username)
+		.clickOnLoginAs().clickContinue();
+		return this;
+		
+	}
+	
+	public ParticipantsPageOperations clickOnRespectiveCourse(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnRespectiveCourse(createBackupData.getCourseName());
 		return this;
 		
 	}

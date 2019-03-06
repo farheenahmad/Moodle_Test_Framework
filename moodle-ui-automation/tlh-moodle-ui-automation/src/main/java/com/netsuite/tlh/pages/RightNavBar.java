@@ -84,7 +84,9 @@ public class RightNavBar extends BasePage {
 	}
 	
 	public RightNavBar clickOnParticipants() throws Throwable {
+		
 		waitForElementToBeVisibile(participantsLink);
+		waitForElementToBeClickable(participantsLink);
 		participantsLink.click();
 		return this;
 	}

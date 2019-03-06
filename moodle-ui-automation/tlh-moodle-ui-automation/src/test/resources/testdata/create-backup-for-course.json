@@ -2,7 +2,11 @@
 	{
 		"Form": {
 			"courseName": "AutomationMoodleCourse",
-			"CourseShortName": "moodlecourse"
+			"CourseShortName": "moodlecourse",
+			"Module2": "Module 2 Project Checkpoint Instructions",
+			"Module3": "Module 3 Project Checkpoint Instructions",
+			"FinalProjectSubmission": "Final Project Submission"
+			
 			
 		}
 	}

@@ -96,11 +96,12 @@ public class ParticipantsPage extends BasePage {
 		return this;
 	}
 	
-	public ParticipantsPage clickOnRespectiveUser(String Role) throws Throwable {
+	public ParticipantsPage clickOnRespectiveUser(String Role, String Username) throws Throwable {
 		BrowserFactory.getDriver().navigate().refresh();
 		waitForElementToBeVisibile(participantsTable);
 		waitForElementToBeClickable(participantsTable);
-		WebElement ele=BrowserFactory.getDriver().findElement(By.xpath("//td//span//*[contains(text(),'" + Role + "') and @class='quickeditlink']/ancestor::tr//td//a//img"));
+		WebElement ele=BrowserFactory.getDriver().findElement
+		(By.xpath("//td//span//*[contains(text(),'" + Role + "') and @class='quickeditlink']/ancestor::tr//td//a//img[contains(@title, '" + Username + "')]"));
 		ele.click();
 		return this;
 	}
@@ -108,6 +109,15 @@ public class ParticipantsPage extends BasePage {
 	public ParticipantsPage clickOnLoginAs() throws Throwable {
 		waitForElementToBeVisibile(logInAsLink);
 		waitForElementToBeClickable(logInAsLink);
+		logInAsLink.click();
+		return this;
+	}
+	
+	public ParticipantsPage clickOnRespectiveCourse(String CourseName) throws Throwable {
+		BrowserFactory.getDriver().navigate().refresh();
+		waitForElementToBePresent(By.cssSelector("p>a[title='" + CourseName + "']"));
+		waitForElementToBeClickable(By.cssSelector("p>a[title='" + CourseName + "']"));
+		BrowserFactory.getDriver().findElement(By.cssSelector("p>a[title='" + CourseName + "']")).click();
 		logInAsLink.click();
 		return this;
 	}

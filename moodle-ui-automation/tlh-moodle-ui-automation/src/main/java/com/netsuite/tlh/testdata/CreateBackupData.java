@@ -13,6 +13,51 @@ public class CreateBackupData implements ITestData {
 	private String role2;
 	private String role3;
 	private String status;
+	private String userName4;
+	private String Module2;
+	
+	public String getModule2() {
+		return Module2;
+	}
+	public void setModule2(String module2) {
+		Module2 = module2;
+	}
+	public String getModule3() {
+		return Module3;
+	}
+	public void setModule3(String module3) {
+		Module3 = module3;
+	}
+	public String getFinalProjectSubmission() {
+		return FinalProjectSubmission;
+	}
+	public void setFinalProjectSubmission(String finalProjectSubmission) {
+		FinalProjectSubmission = finalProjectSubmission;
+	}
+	private String Module3;
+	private String FinalProjectSubmission;
+	
+	
+	public String getUserName4() {
+		return userName4;
+	}
+	public void setUserName4(String userName4) {
+		this.userName4 = userName4;
+	}
+	public String getUserName5() {
+		return userName5;
+	}
+	public void setUserName5(String userName5) {
+		this.userName5 = userName5;
+	}
+	public String getUserName6() {
+		return userName6;
+	}
+	public void setUserName6(String userName6) {
+		this.userName6 = userName6;
+	}
+	private String userName5;
+	private String userName6;
 	
 	
 	public String getStatus() {

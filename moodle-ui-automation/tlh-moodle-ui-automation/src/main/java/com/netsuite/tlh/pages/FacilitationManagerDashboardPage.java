@@ -1,5 +1,8 @@
 package com.netsuite.tlh.pages;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.Alert;
@@ -74,6 +77,8 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	@FindBy(css = "table[class='criteria']>tbody>tr")
 	private WebElement previoudGradesTable;
 	
+	@FindBy(xpath = "//table[@class='table']//tbody//tr//td[contains(text(),'Signed-off')]")
+	private WebElement signedOffText;
 
 	public FacilitationManagerDashboardPage verifyRubricView() throws Throwable {
 		waitForElementToBeVisibile(previoudGrades);
@@ -235,6 +240,16 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		Alert alert = BrowserFactory.getDriver().switchTo().alert();
 		Thread.sleep(1000);
 		alert.accept();
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage verifyUserSignedOff() throws Throwable {
+		waitForElementToBeVisibile(signedOffText);
+		waitForElementToBeClickable(signedOffText);
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		Date date = new Date();
+		WebElement ele=BrowserFactory.getDriver().findElement(By.xpath("//table[@class='table']//tbody//tr//td[contains(text(),'Signed-off')]/following-sibling::td[contains(text(),'" + dateFormat.format(date) + "')]"));
+		waitForElementToBeVisibile(ele);
 		return this;
 	}
 
