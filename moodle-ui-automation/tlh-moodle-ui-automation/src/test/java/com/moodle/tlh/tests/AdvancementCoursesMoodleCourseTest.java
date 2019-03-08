@@ -36,21 +36,22 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
 		
-		Navigator.GetCoursePageOperations().doActivityCompletion(createBackupData.getModule2());
+		Navigator.GetCoursePageOperations().clickTurnEditingOn().
+		doActivityCompletion(createBackupData.getModule2(),createBackupData)
+		.doActivityCompletion(createBackupData.getModule3(),createBackupData)
+		.doActivityCompletion(createBackupData.getFinalProjectSubmission(),createBackupData)
+		.doParticipationAcknowledgement(createBackupData.getParticipationAcknowledgement(),createBackupData);
 		
+		rightNavOperations.clickCourseCompletion();
 		
+		Navigator.GetCoursePageOperations().doCourseCompletion(createBackupData).clickTurnEditingOff();
 	}
-	
-	
-	
-	
-	
-	
 	
 	//@Test(priority=4,description = "MFD-224 ::Login as student and Complete the assignment", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void LoginAsStudentAndCompleteAssignment(LinkedHashMap<String, ?> testData) throws Throwable {
 		
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
+		rightNavOperations.getEnrollParticipantsPage();
 		Navigator.GetParticipationOperationsPage().loginAsRespectiveUser(createBackupData,createBackupData.getUserName1());
 		rightNavOperations.getAssignmentsPage();
 		Navigator.GetAssignmentsOperations().completeAssingments();

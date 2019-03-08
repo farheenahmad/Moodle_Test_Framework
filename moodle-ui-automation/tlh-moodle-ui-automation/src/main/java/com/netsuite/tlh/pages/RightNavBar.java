@@ -1,5 +1,6 @@
 package com.netsuite.tlh.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -51,6 +52,17 @@ public class RightNavBar extends BasePage {
 	@FindBy(xpath = "//span[contains(text(),'Restore course')]")
 	private WebElement siteAdministrationRestoreCourseLink;
 	
+	@FindBy(xpath = "//p//a[contains(text(),'Course completion')]//i")
+	private WebElement courseCompletionLink;
+	
+	
+	public RightNavBar clickcourseCompletionLink() throws Throwable {
+		BrowserFactory.getDriver().navigate().refresh();
+		waitForElementToBeVisibile(courseCompletionLink);
+		waitForElementToBeClickable(courseCompletionLink);
+		courseCompletionLink.sendKeys(Keys.ENTER);
+		return this;
+	}
 
 	public RightNavBar clickOnFitnessPovCourse() throws Throwable {
 		waitForElementToBeVisibile(fitnessPovCourse);

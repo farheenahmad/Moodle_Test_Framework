@@ -3,9 +3,12 @@
 		"Form": {
 			"courseName": "AutomationMoodleCourse",
 			"CourseShortName": "moodlecourse",
-			"Module2": "Module 2 Project Checkpoint Instructions",
-			"Module3": "Module 3 Project Checkpoint Instructions",
-			"FinalProjectSubmission": "Final Project Submission"
+			"Module2": "Module 2 Project Checkpoint",
+			"Module3": "Module 3 Project Checkpoint",
+			"FinalProjectSubmission": "Final Project Submission",
+			"ActivityDetails":"Show activity as complete when conditions are met",
+			"ParticipationAcknowledgement": "Required: Participation Acknowledgement",
+			"CompletionRequirement":"Course is complete when ALL conditions are met"
 			
 			
 		}

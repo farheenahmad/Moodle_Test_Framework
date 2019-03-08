@@ -117,8 +117,7 @@ public class ParticipantsPage extends BasePage {
 		BrowserFactory.getDriver().navigate().refresh();
 		waitForElementToBePresent(By.cssSelector("p>a[title='" + CourseName + "']"));
 		waitForElementToBeClickable(By.cssSelector("p>a[title='" + CourseName + "']"));
-		BrowserFactory.getDriver().findElement(By.cssSelector("p>a[title='" + CourseName + "']")).click();
-		logInAsLink.click();
+		BrowserFactory.getDriver().findElement(By.cssSelector("p>a[title='" + CourseName + "']")).click();	
 		return this;
 	}
 	
@@ -128,4 +127,6 @@ public class ParticipantsPage extends BasePage {
 		continueButton.click();
 		return this;
 	}
+	
+	
 }

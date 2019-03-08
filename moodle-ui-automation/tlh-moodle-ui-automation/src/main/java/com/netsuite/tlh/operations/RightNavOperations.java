@@ -8,7 +8,7 @@ import com.netsuite.tlh.pages.RightNavBar;
 public class RightNavOperations extends BaseOperations {
 
 	public RightNavOperations getFitnessPovCoursePage() throws DriverNotInitializedException, Throwable {
-		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnFitnessPovCourse()/*.verifyUserIsOnFitnessPovCoursePage()*/;
+		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnFitnessPovCourse();
 		return this;	
 	}
 	
@@ -19,6 +19,11 @@ public class RightNavOperations extends BaseOperations {
 	
 	public RightNavOperations getEnrollParticipantsPage() throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnParticipants();
+		return this;	
+	}
+	
+	public RightNavOperations clickCourseCompletion() throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickcourseCompletionLink();
 		return this;	
 	}
 	

@@ -15,6 +15,31 @@ public class CreateBackupData implements ITestData {
 	private String status;
 	private String userName4;
 	private String Module2;
+	private String ParticipationAcknowledgement;
+	private String CompletionRequirement;
+	
+	public String getCompletionRequirement() {
+		return CompletionRequirement;
+	}
+	public void setCompletionRequirement(String completionRequirement) {
+		CompletionRequirement = completionRequirement;
+	}
+	public String getParticipationAcknowledgement() {
+		return ParticipationAcknowledgement;
+	}
+	public void setParticipationAcknowledgement(String participationAcknowledgement) {
+		ParticipationAcknowledgement = participationAcknowledgement;
+	}
+	
+	
+	
+	public String getActivityDetails() {
+		return ActivityDetails;
+	}
+	public void setActivityDetails(String activityDetails) {
+		ActivityDetails = activityDetails;
+	}
+	private String ActivityDetails;
 	
 	public String getModule2() {
 		return Module2;
