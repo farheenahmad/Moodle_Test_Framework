@@ -29,9 +29,6 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	@FindBy(css = "span[class='flatpickr-day today']")
 	private WebElement todaysDate;
 	
-	@FindBy(css = "span[class='flatpickr-day today selected endRange inRange']")
-	private WebElement todaysDate2;
-	
 	@FindBy(id = "filterButton")
 	private WebElement filterButton;
 	
@@ -68,9 +65,6 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	@FindBy(xpath = "(//span[@class='flatpickr-day today'])[2]")
 	private WebElement todaysGradedDate;
 	
-	@FindBy(css = "span[class='flatpickr-day today selected endRange inRange']")
-	private WebElement todaysGradedDate2;
-	
 	@FindBy(xpath = "//h3[contains(text(),'Previous Grades')]")
 	private WebElement previoudGrades;
 	
@@ -79,6 +73,134 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	
 	@FindBy(xpath = "//table[@class='table']//tbody//tr//td[contains(text(),'Signed-off')]")
 	private WebElement signedOffText;
+	
+	@FindBy(name = "facilitatorName")
+	private WebElement facilitatortextBox;
+	
+	@FindBy(id = "resetButton")
+	private WebElement resetButton;
+	
+	@FindBy(name = "studentName")
+	private WebElement studentextBox;
+	
+	@FindBy(name = "assignmentName")
+	private WebElement assignmentNametextBox;
+	
+	@FindBy(name = "courseCode")
+	private WebElement courseCodetextBox;
+	
+	@FindBy(name = "courseName")
+	private WebElement courseNametextBox;
+	
+	@FindBy(name = "signOffStatus")
+	private WebElement SignOffStatusDropdown;
+	
+	@FindBy(css = "input[name='expectedCompletionDate']")
+	private WebElement expectedCompletionDateInput;
+	
+	@FindBy(xpath = "(//span[@class='flatpickr-day today'])[3]")
+	private WebElement todaysDate3;
+	
+	@FindBy(xpath = "(//span[@class='flatpickr-day today'])[4]")
+	private WebElement todaysDate4;
+	
+	@FindBy(name = "originalGrader")
+	private WebElement originalGraderTextBox;
+	
+	@FindBy(name = "courseStartDate")
+	private WebElement courseStartDateDropDown;
+
+	@FindBy(xpath = "//span[@class='flatpickr-day today selected endRange inRange']")
+	private WebElement todaysDate2;
+	
+	@FindBy(css = "span[class='flatpickr-day today selected endRange inRange']")
+	private WebElement todaysGradedDate2;
+	
+	public FacilitationManagerDashboardPage selectCourseStartDate() throws Throwable {
+		waitForElementToBeVisibile(courseStartDateDropDown);
+		courseStartDateDropDown.click();
+		waitForElementToBeClickable(todaysDate3);
+		waitForElementToBeVisibile(todaysDate3);
+		todaysDate3.click();
+		waitForElementToBeClickable(todaysDate2);
+		todaysDate2.click();
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage enterOriginalGraderName(String GraderName) throws Throwable {
+		waitForElementToBeVisibile(originalGraderTextBox);
+		waitForElementToBeClickable(originalGraderTextBox);
+		originalGraderTextBox.clear();
+		originalGraderTextBox.sendKeys(GraderName);
+		return this;
+	}
+	
+	
+	public FacilitationManagerDashboardPage expectedCompletionDateInput() throws Throwable {
+		waitForElementToBeVisibile(expectedCompletionDateInput);
+		expectedCompletionDateInput.click();
+		waitForElementToBeVisibile(todaysDate4);
+		waitForElementToBeClickable(todaysDate4);
+		todaysDate4.click();
+		waitForElementToBeClickable(todaysDate2);
+		todaysDate2.click();
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage selectSignOffStatus(String Stat) throws Throwable {
+		waitForElementToBeVisibile(SignOffStatusDropdown);
+		waitForElementToBeClickable(SignOffStatusDropdown);
+		Select sel= new Select(SignOffStatusDropdown);
+		sel.selectByVisibleText(Stat);
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage enterCourseName(String Name) throws Throwable {
+		waitForElementToBeVisibile(courseNametextBox);
+		waitForElementToBeClickable(courseNametextBox);
+		courseNametextBox.clear();
+		courseNametextBox.sendKeys(Name);
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage enterCourseCode(String code) throws Throwable {
+		waitForElementToBeVisibile(courseCodetextBox);
+		waitForElementToBeClickable(courseCodetextBox);
+		courseCodetextBox.clear();
+		courseCodetextBox.sendKeys(code);
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage enterAssignmentName(String AssignmentName) throws Throwable {
+		waitForElementToBeVisibile(assignmentNametextBox);
+		waitForElementToBeClickable(assignmentNametextBox);
+		assignmentNametextBox.clear();
+		assignmentNametextBox.sendKeys(AssignmentName);
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage enterStudentName(String name) throws Throwable {
+		waitForElementToBeVisibile(studentextBox);
+		waitForElementToBeClickable(studentextBox);
+		studentextBox.clear();
+		studentextBox.sendKeys(name);
+		return this;
+	}
+		
+	public FacilitationManagerDashboardPage clickResetButton() throws Throwable {
+		waitForElementToBeVisibile(resetButton);
+		waitForElementToBeClickable(resetButton);
+		resetButton.click();
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage enterFacilitatorName(String facilitatorname) throws Throwable {
+		waitForElementToBeVisibile(facilitatortextBox);
+		waitForElementToBeClickable(facilitatortextBox);
+		facilitatortextBox.clear();
+		facilitatortextBox.sendKeys(facilitatorname);
+		return this;
+	}
 
 	public FacilitationManagerDashboardPage verifyRubricView() throws Throwable {
 		waitForElementToBeVisibile(previoudGrades);

@@ -1,5 +1,6 @@
 package com.netsuite.tlh.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -42,6 +43,9 @@ public class RightNavBar extends BasePage {
 	
 	@FindBy(xpath = "//*[text()='Facilitation Manager Dashboard']")
 	private WebElement facilitationManagerDashboardLink;
+	
+	@FindBy(xpath = "//*[text()='Facilitation Dashboard']")
+	private WebElement facilitationDashboardLink;
 	
 	@FindBy(xpath = "//span[contains(text(),'Site administration')]")
 	private WebElement siteAdministrationLink;
@@ -112,6 +116,15 @@ public class RightNavBar extends BasePage {
 		//coursesLink.click();
 		return this;
 	}
+	
+	public RightNavBar clickOnCourse(String course) throws Throwable {
+		WebElement courseLink= BrowserFactory.getDriver().findElement(By.xpath("//a[contains(text(),'" + course + "')]"));
+		
+		waitForElementToBeVisibile(courseLink);
+		waitForElementToBeClickable(courseLink);
+		courseLink.click();
+		return this;
+	}
 
 	public RightNavBar clickOnAssignments() throws Throwable {
 		
@@ -126,6 +139,14 @@ public class RightNavBar extends BasePage {
 		waitForElementToBeVisibile(facilitationManagerDashboardLink);
 		waitForElementToBeClickable(facilitationManagerDashboardLink);
 		facilitationManagerDashboardLink.click();
+		return this;
+	}
+	
+public RightNavBar clickOnFacilitationDashboardLink() throws Throwable {
+		
+		waitForElementToBeVisibile(facilitationDashboardLink);
+		waitForElementToBeClickable(facilitationDashboardLink);
+		facilitationDashboardLink.click();
 		return this;
 	}
 

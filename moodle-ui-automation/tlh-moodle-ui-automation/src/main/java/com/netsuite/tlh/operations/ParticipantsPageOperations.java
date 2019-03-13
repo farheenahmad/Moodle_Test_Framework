@@ -30,8 +30,8 @@ public class ParticipantsPageOperations extends BaseOperations {
 		
 	}
 	
-	public ParticipantsPageOperations loginAsRespectiveUser(CreateBackupData createBackupData, String Username) throws DriverNotInitializedException, Throwable {
-		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnRespectiveUser(createBackupData.getRole1(),Username)
+	public ParticipantsPageOperations loginAsRespectiveUser(String Role, String Username) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnRespectiveUser(Role,Username)
 		.clickOnLoginAs().clickContinue();
 		return this;
 		

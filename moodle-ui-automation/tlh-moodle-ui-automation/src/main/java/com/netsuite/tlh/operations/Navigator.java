@@ -29,4 +29,8 @@ public class Navigator extends BaseOperations {
 		return OperationFactory.getOperation(FacilitationManagerDashboardOperations.class);
 	}
 	
+	public static FacilitationDashboardOperations FacilitationDashboardOperations() throws Throwable {
+		return OperationFactory.getOperation(FacilitationDashboardOperations.class);
+	}
+	
 }

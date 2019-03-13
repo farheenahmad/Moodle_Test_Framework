@@ -4,6 +4,7 @@ import com.framework.exceptions.DriverNotInitializedException;
 import com.netsuite.tlh.factory.NetsuiteTLHPageFactory;
 import com.netsuite.tlh.pages.BackUpPage;
 import com.netsuite.tlh.pages.RightNavBar;
+import com.netsuite.tlh.testdata.CreateBackupData;
 
 public class RightNavOperations extends BaseOperations {
 
@@ -32,6 +33,11 @@ public class RightNavOperations extends BaseOperations {
 		return this;	
 	}
 	
+	public RightNavOperations getCoursePage(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnCourse(createBackupData.getCourseShortName());
+		return this;	
+	}
+	
 	public RightNavOperations getAssignmentsPage() throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnAssignments();
 		return this;	
@@ -39,6 +45,11 @@ public class RightNavOperations extends BaseOperations {
 	
 	public RightNavOperations getFacilitationManagerDashboard() throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnFacilitationManagerDashboardLink();
+		return this;	
+	}
+	
+	public RightNavOperations getFacilitationDashboard() throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnFacilitationDashboardLink();
 		return this;	
 	}
 	

@@ -30,10 +30,10 @@ public class BrowserFactory {
 				Driver = new FirefoxDriver();
 				break;
 			case chrome:
-				// System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")
-				// + "/src/test/resources/chromedriver.exe");
+				 System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")
+				 + "/src/test/resources/chromedriver.exe");
 
-				WebDriverManager.chromedriver().setup();
+			//	WebDriverManager.chromedriver().setup();
 				
 				Map<String, Object> prefs = new HashMap<String, Object>();
 				String download_folder = "src/test/resources/testdata/downloads";

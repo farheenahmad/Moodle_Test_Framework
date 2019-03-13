@@ -17,7 +17,76 @@ public class CreateBackupData implements ITestData {
 	private String Module2;
 	private String ParticipationAcknowledgement;
 	private String CompletionRequirement;
+	private String statusAll;
+	private String assignmentName;
+	private String statusUngraded;
+	private String signOffStatusAll;
+	private String facilitatorName;
+	private String originalGraderName;
 	
+	
+	public String getOriginalGraderName() {
+		return originalGraderName;
+	}
+	public void setOriginalGraderName(String originalGraderName) {
+		this.originalGraderName = originalGraderName;
+	}
+	public String getFacilitatorName() {
+		return facilitatorName;
+	}
+	public void setFacilitatorName(String facilitatorName) {
+		this.facilitatorName = facilitatorName;
+	}
+	public String getSignOffStatusAll() {
+		return signOffStatusAll;
+	}
+	public void setSignOffStatusAll(String signOffStatusAll) {
+		this.signOffStatusAll = signOffStatusAll;
+	}
+	public String getSignOffStatusAwaiting() {
+		return signOffStatusAwaiting;
+	}
+	public void setSignOffStatusAwaiting(String signOffStatusAwaiting) {
+		this.signOffStatusAwaiting = signOffStatusAwaiting;
+	}
+	public String getSignOffStatusSigned() {
+		return signOffStatusSigned;
+	}
+	public void setSignOffStatusSigned(String signOffStatusSigned) {
+		this.signOffStatusSigned = signOffStatusSigned;
+	}
+	private String signOffStatusAwaiting;
+	private String signOffStatusSigned;
+	
+	
+	public String getStatusUngraded() {
+		return statusUngraded;
+	}
+	public void setStatusUngraded(String statusUngraded) {
+		this.statusUngraded = statusUngraded;
+	}
+	public String getStatusResubmitted() {
+		return statusResubmitted;
+	}
+	public void setStatusResubmitted(String statusResubmitted) {
+		this.statusResubmitted = statusResubmitted;
+	}
+	private String statusResubmitted;
+	
+	
+	
+	public String getAssignmentName() {
+		return assignmentName;
+	}
+	public void setAssignmentName(String assignmentName) {
+		this.assignmentName = assignmentName;
+	}
+	public String getStatusAll() {
+		return statusAll;
+	}
+	public void setStatusAll(String statusAll) {
+		this.statusAll = statusAll;
+	}
 	public String getCompletionRequirement() {
 		return CompletionRequirement;
 	}

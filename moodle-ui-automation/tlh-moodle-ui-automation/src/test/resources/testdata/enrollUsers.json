@@ -2,16 +2,26 @@
 	{
 		"Form": {
 			"userName1": "Eric Rodrigo",
-			"userName2": "Salvatore Ajami",
+			"userName2": "Elizabeth Contreras",
 			"userName3":"Admin User",
 			"role1":"Student",
 			"role2":"Facilitator",
 			"role3":"Facilitation Manager",
 			"status":"Graded",
+			"statusAll":"All",
+			"statusUngraded":"Ungraded",
+			"statusResubmitted":"Resubmitted",
 			"userName4": "Eric Chan",
 			"userName5": "Salvatore Cimino",
 			"userName6":"Dana Gale",
-			"courseName": "AutomationMoodleCourse"
+			"courseName": "AutomationMoodleCourse",
+			"assignmentName": "Final",
+			"signOffStatusAll": "All",
+			"signOffStatusAwaiting": "Awaiting Sign-off",
+			"signOffStatusSigned": "Signed-off",
+			"CourseShortName": "moodlecourse",
+			"facilitatorName": "Test",
+			"originalGraderName":"Martha"
 			
 		}
 	}
