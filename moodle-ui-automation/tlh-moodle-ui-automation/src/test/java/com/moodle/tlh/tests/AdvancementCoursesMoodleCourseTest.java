@@ -55,17 +55,22 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		Navigator.GetParticipationOperationsPage().loginAsRespectiveUser(createBackupData.getRole1(),createBackupData.getUserName1());
 		rightNavOperations.getAssignmentsPage();
 		Navigator.GetAssignmentsOperations().completeAssingments();
+		rightNavOperations.getCoursePage(createBackupData);
+		Navigator.GetCoursePageOperations().completeParticipationAcknowledgement(createBackupData);
+		
+		
+		
 		menuBarOperations.doLogOut();	
 		
 	}
 	
-	@Test(priority=5,description = "MFD-225 ::MFD-245::Facilitation Dashboard :Grading,Verify Rubic View", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	@Test(priority=5,description = "MFD-225 ::MFD-245::MFD-267::Facilitation Dashboard :Grading,Verify Rubic View, Grading Filters", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void FacilitationDashboardGradingTheAssignment(LinkedHashMap<String, ?> testData) throws Throwable {
 		
-		//CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
+		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
 		loginOperations.doSecondLogin(userName, passWord);
 		rightNavOperations.getFacilitationManagerDashboard();
-		Navigator.FacilitationManagerDashboardOperations().gradeAssigment();	
+		Navigator.FacilitationManagerDashboardOperations().gradeAssigment(createBackupData);	
 		
 	}
 	
@@ -78,6 +83,7 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		rightNavOperations.getCoursePage(createBackupData).getEnrollParticipantsPage();
 		Navigator.GetParticipationOperationsPage().loginAsRespectiveUser(createBackupData.getRole2(),createBackupData.getUserName2());
 		rightNavOperations.getFacilitationDashboard();
+		//add course code tomorrow
 		Navigator.FacilitationDashboardOperations().verifyFilters(createBackupData);
 		menuBarOperations.doLogOut();
 		loginOperations.doSecondLogin(userName, passWord);

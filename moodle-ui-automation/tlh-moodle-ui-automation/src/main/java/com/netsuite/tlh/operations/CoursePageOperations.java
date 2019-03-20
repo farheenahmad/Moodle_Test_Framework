@@ -45,4 +45,11 @@ public class CoursePageOperations extends BaseOperations {
 		return this;	
 	}
 	
+	public CoursePageOperations completeParticipationAcknowledgement(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(CoursePage.class).clickparticipationAcknowledgementLink().clickattemptQuizNowButton()
+		.clickQuizAnswerOption().clickfinishAttemptButton().clicksubmitAllAndFinishButton().clickfinishReviewLink()
+		;
+		return this;	
+	}
+	
 }

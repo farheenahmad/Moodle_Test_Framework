@@ -1,6 +1,13 @@
 package com.netsuite.tlh.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +41,9 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	
 	@FindBy(css = "table[class='table']")
 	private WebElement table;
+	
+	@FindBy(css = "table[class='table']>tbody>tr")
+	private WebElement tableData;
 	
 	@FindBy(xpath = "(//tr[@role='radiogroup']//td)[4]")
 	private WebElement grade;
@@ -115,6 +125,9 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	
 	@FindBy(css = "span[class='flatpickr-day today selected endRange inRange']")
 	private WebElement todaysGradedDate2;
+	
+	@FindBy(xpath = "//*[text()='Facilitation Manager Dashboard']")
+	private WebElement facilitationManagerDashboardLink;
 	
 	public FacilitationManagerDashboardPage selectCourseStartDate() throws Throwable {
 		waitForElementToBeVisibile(courseStartDateDropDown);
@@ -242,6 +255,63 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		return this;
 	}
 	
+	public FacilitationManagerDashboardPage getDashboardRefreshTimeStamp() throws Throwable {
+		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+            }};
+		waitForElementToBeVisibile(tableData);
+		long start=System.currentTimeMillis();
+		BrowserFactory.getDriver().navigate().refresh();
+		WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
+		wait.until(expectation);
+		long finish=System.currentTimeMillis();
+		long totalTime=finish- start;
+		System.out.println("TotalTime taken for Dashboard to refresh = "+ totalTime +" milli Second");
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage getGradedFilterTimeStamp() throws Throwable {
+		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+            }};
+        waitForElementToBeVisibile(filterButton);
+        waitForElementToBeClickable(filterButton);
+		long start=System.currentTimeMillis();
+		filterButton.click();
+		WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
+		wait.until(expectation);
+		long finish=System.currentTimeMillis();
+		long totalTime=finish- start;
+		System.out.println("TotalTime taken for Graded Filter Dashboard = "+ totalTime +" milli Second");
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage waitforPageLoad() throws Throwable {
+		
+		
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage getDashboardLoadingTimeStamp() throws Throwable {
+		
+		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+                    public Boolean apply(WebDriver driver) {
+                        return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+          }};
+		waitForElementToBeVisibile(facilitationManagerDashboardLink);
+		waitForElementToBeClickable(facilitationManagerDashboardLink);
+		long start=System.currentTimeMillis();
+		facilitationManagerDashboardLink.click();
+		WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
+        wait.until(expectation);
+		long finish=System.currentTimeMillis();
+		long totalTime=finish- start;
+		System.out.println("TotalTime taken for dashboard to load = "+ totalTime +" milli Second");
+		return this;
+	}
+	
 	public FacilitationManagerDashboardPage openAssigmentsLink() throws Throwable {
 		waitForElementToBeVisibile(table);
 		waitForElementToBeClickable(table);
@@ -262,8 +332,22 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 				BrowserFactory.getDriver().switchTo().window(currentWindow);
 		  }
 		  gradeAssignment();
+		  verifyTableIspresent();
 	  }   
 	   return this;
+	}
+	
+	public FacilitationManagerDashboardPage verifyGradedUngradedFilters() throws Throwable {
+		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		Date date = new Date();
+		String dt= dateFormat.format(date);
+		waitForElementToBePresent(By.xpath("//td[contains(text(),'Graded')]/preceding-sibling::td[contains(text(),'" + dt + "')]"));
+		waitForElementToBePresent(By.xpath("//td[contains(text(),'Graded')]/following-sibling::td[contains(text(),'" + dt + "')]"));
+		waitForElementToBePresent(By.xpath("//td[contains(text(),'Admin User')]"));
+		
+		
+		return this;
 	}
 	
 	public FacilitationManagerDashboardPage verifyTableIspresent() throws Throwable {
@@ -350,7 +434,8 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	public FacilitationManagerDashboardPage checkIfGraded() throws Throwable {
 		waitForElementToBeVisibile(gradedTextEndPage);
 		waitForElementToBeClickable(gradedTextEndPage);
-		
+		waitForElementToBePresent(By.xpath("(//table//tbody//tr//td[contains(text(),'Graded')])[2]"));
+		waitForElementToBePresent(By.xpath("(//table//tbody//tr//td[contains(text(),'Graded')])[3]"));
 		return this;
 	}
 	

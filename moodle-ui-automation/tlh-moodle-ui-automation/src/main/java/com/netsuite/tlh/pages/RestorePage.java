@@ -46,6 +46,9 @@ public class RestorePage extends BasePage {
 	@FindBy(css = "input[name='repo_upload_file']")
 	private WebElement uploadFileOption;
 	
+	@FindBy(xpath = "//span[contains(text(),'Upload a file')]")
+	private WebElement uploadFileLink;
+	
 	@FindBy(css = "button[class='fp-upload-btn btn-primary btn']")
 	private WebElement uploadThisFileButton;
 	
@@ -70,11 +73,16 @@ public class RestorePage extends BasePage {
 	}
 	
 	public RestorePage uploadFile() throws Throwable {
+		waitForElementToBeClickable(uploadFileLink);
+		waitForElementToBeVisibile(uploadFileLink);
+		uploadFileLink.click();
 		waitForElementToBeClickable(uploadFileOption);
 		waitForElementToBeVisibile(uploadFileOption);
 		uploadFileOption.sendKeys(System.getProperty("user.dir")+"/src/test/resources/testdata/backup-moodle2-course-1401-thepsychofspor-ce-pov-20190107-1229.mbz");
 		return this;
 	}
+	
+	
 	
 	public RestorePage clickOnUploadThisFileButton() throws Throwable {
 		waitForElementToBeClickable(uploadThisFileButton);

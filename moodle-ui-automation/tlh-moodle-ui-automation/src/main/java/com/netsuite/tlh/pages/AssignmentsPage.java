@@ -44,6 +44,10 @@ public class AssignmentsPage extends MenuBarPage {
 	@FindBy(xpath = "//td[text()='Submitted for grading']")
 	private WebElement submittedForGradingText;
 	
+	@FindBy(xpath = "//span[contains(text(),'Upload a file')]")
+	private WebElement uploadFileLink;
+	
+	
 	public AssignmentsPage openAssigmentsLink() throws Throwable {
 		waitForElementToBeVisibile(table);
 	   List<WebElement> elements=BrowserFactory.getDriver().findElements(By.xpath("//table[@class='generaltable']//tbody//tr//td[2]//a"));
@@ -94,6 +98,9 @@ public class AssignmentsPage extends MenuBarPage {
 	}
 	
 	public AssignmentsPage uploadFile() throws Throwable {
+		waitForElementToBeClickable(uploadFileLink);
+		waitForElementToBeVisibile(uploadFileLink);
+		uploadFileLink.click();
 		waitForElementToBeVisibile(fileUploadInput);
 		fileUploadInput.sendKeys(System.getProperty("user.dir")+"/src/test/resources/testdata/TLH.txt");
 	   return this;

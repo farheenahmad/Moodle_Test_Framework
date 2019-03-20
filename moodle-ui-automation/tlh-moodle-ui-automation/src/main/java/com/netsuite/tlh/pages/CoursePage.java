@@ -60,6 +60,65 @@ public class CoursePage extends MenuBarPage {
 	@FindBy(xpath = "//a[contains(text(),'Select all/none')]")
 	private WebElement selectAllLink;
 	
+	@FindBy(xpath = "//span[contains(text(),'Required: Participation Acknowledgement')]")
+	private WebElement participationAcknowledgementLink;
+	
+	@FindBy(xpath = "//button[contains(text(),'Attempt quiz now')]")
+	private WebElement attemptQuizNowButton;
+	
+	@FindBy(css = "input[type='radio'][value='0']")
+	private WebElement quizAnswerOption;
+	
+	@FindBy(css = "input[value='Finish attempt ...']")
+	private WebElement finishAttemptButton;
+	
+	@FindBy(xpath = "//button[contains(text(),'Submit all and finish')]")
+	private WebElement submitAllAndFinishButton;
+	
+	@FindBy(css = "input[value='Submit all and finish']")
+	private WebElement submitAllAndFinishpopup;
+	
+	@FindBy(xpath = "//a[contains(text(),'Finish review')]")
+	private WebElement finishReviewLink;
+	
+	public CoursePage clickfinishReviewLink() throws Throwable {
+		waitForElementToBeVisibile(finishReviewLink);
+		finishReviewLink.click();
+		return this;
+	}
+	
+	public CoursePage clicksubmitAllAndFinishButton() throws Throwable {
+		waitForElementToBeVisibile(submitAllAndFinishButton);
+		submitAllAndFinishButton.click();
+		waitForElementToBeVisibile(submitAllAndFinishpopup);
+		submitAllAndFinishpopup.click();
+		return this;
+	}
+	
+	public CoursePage clickfinishAttemptButton() throws Throwable {
+		waitForElementToBeVisibile(finishAttemptButton);
+		finishAttemptButton.click();
+		return this;
+	}
+	
+	public CoursePage clickQuizAnswerOption() throws Throwable {
+		waitForElementToBeVisibile(quizAnswerOption);
+		quizAnswerOption.click();
+		return this;
+	}
+	
+	public CoursePage clickattemptQuizNowButton() throws Throwable {
+		waitForElementToBeVisibile(attemptQuizNowButton);
+		attemptQuizNowButton.click();
+		return this;
+	}
+	
+	public CoursePage clickparticipationAcknowledgementLink() throws Throwable {
+		waitForElementToBeVisibile(participationAcknowledgementLink);
+		participationAcknowledgementLink.click();
+		return this;
+	}
+	
 	public CoursePage clicksaveAndReturnCourseButton() throws Throwable {
 		waitForElementToBeVisibile(saveAndReturnCourseButton);
 		saveAndReturnCourseButton.click();

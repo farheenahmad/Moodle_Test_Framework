@@ -21,7 +21,8 @@
 			"signOffStatusSigned": "Signed-off",
 			"CourseShortName": "moodlecourse",
 			"facilitatorName": "Test",
-			"originalGraderName":"Martha"
+			"originalGraderName":"Martha",
+			"performanceUserName": "Kelly Witt"
 			
 		}
 	}

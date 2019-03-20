@@ -8,10 +8,31 @@ import com.netsuite.tlh.testdata.CreateBackupData;
 
 public class FacilitationManagerDashboardOperations extends BaseOperations {
 	
-	public FacilitationManagerDashboardOperations gradeAssigment() throws DriverNotInitializedException, Throwable {
+	public FacilitationManagerDashboardOperations gradeAssigment(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(FacilitationManagerDashboardPage.class).selectDateSubmitted().clickFilterButton()
 		.openAssigmentsLink()
+		
+		.selectAssignmentStatus(createBackupData.getStatus())
+		.clickFilterButton().checkIfGraded()
+		
+		.verifyGradedUngradedFilters()
 		;
+		return this;	
+	}
+	
+	public FacilitationManagerDashboardOperations getRefreshDashboardPerformance() throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(FacilitationManagerDashboardPage.class).getDashboardRefreshTimeStamp();
+		return this;	
+	}
+	
+	public FacilitationManagerDashboardOperations getGradedFilterDashboardPerformance(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(FacilitationManagerDashboardPage.class).selectAssignmentStatus(createBackupData.getStatus())
+		.getGradedFilterTimeStamp();
+		return this;	
+	}
+	
+	public FacilitationManagerDashboardOperations getLoadingDashboardPerformance() throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(FacilitationManagerDashboardPage.class).getDashboardLoadingTimeStamp();
 		return this;	
 	}
 	

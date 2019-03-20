@@ -23,8 +23,15 @@ public class CreateBackupData implements ITestData {
 	private String signOffStatusAll;
 	private String facilitatorName;
 	private String originalGraderName;
+	private String performanceUserName;
 	
 	
+	public String getPerformanceUserName() {
+		return performanceUserName;
+	}
+	public void setPerformanceUserName(String performanceUserName) {
+		this.performanceUserName = performanceUserName;
+	}
 	public String getOriginalGraderName() {
 		return originalGraderName;
 	}
