@@ -102,6 +102,7 @@ public class AssignmentsPage extends MenuBarPage {
 		waitForElementToBeVisibile(uploadFileLink);
 		uploadFileLink.click();
 		waitForElementToBeVisibile(fileUploadInput);
+		Thread.sleep(1000);
 		fileUploadInput.sendKeys(System.getProperty("user.dir")+"/src/test/resources/testdata/TLH.txt");
 	   return this;
 	}

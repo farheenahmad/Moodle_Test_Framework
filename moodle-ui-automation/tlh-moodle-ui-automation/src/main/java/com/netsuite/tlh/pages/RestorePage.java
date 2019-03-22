@@ -85,6 +85,7 @@ public class RestorePage extends BasePage {
 	
 	
 	public RestorePage clickOnUploadThisFileButton() throws Throwable {
+		Thread.sleep(2000);
 		waitForElementToBeClickable(uploadThisFileButton);
 		waitForElementToBeVisibile(uploadThisFileButton);
 		uploadThisFileButton.click();

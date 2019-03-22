@@ -19,6 +19,12 @@ public class CoursePageOperations extends BaseOperations {
 		return this;	
 	}
 	
+	public CoursePageOperations verifyCheckPoints() throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(CoursePage.class).verifyCheckPoints().clickModule2ProjectCheckpointLink()
+		.clickEditSubmissionButton().clickAddButton().uploadAFile();
+		return this;	
+	}
+	
 	public CoursePageOperations clickTurnEditingOff() throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(CoursePage.class).clickturnEditingOffLink();
 		return this;	

@@ -17,7 +17,7 @@ public class FacilitationDashboardOperations extends BaseOperations {
 		.selectDateSubmitted().selectAssignmentStatus(createBackupData.getStatusAll()).clickFilterButton()
 		.verifyTableIspresent().clickResetButton()
 		
-		//.enterCourseCode(createBackupData.getCourseShortName()).selectAssignmentStatus(createBackupData.getStatusAll()).clickFilterButton().verifyTableIspresent().clickResetButton()
+		.enterCourseCode(createBackupData.getCourseShortName()).selectAssignmentStatus(createBackupData.getStatusAll()).clickFilterButton().verifyTableIspresent().clickResetButton()
 		
 		.enterCourseName(createBackupData.getCourseName()).selectAssignmentStatus(createBackupData.getStatusAll())
 		.clickFilterButton().verifyTableIspresent().clickResetButton()
@@ -37,7 +37,7 @@ public class FacilitationDashboardOperations extends BaseOperations {
 		
 		.selectSignOffStatus(createBackupData.getSignOffStatusSigned()).clickFilterButton().verifyTableIspresent().clickResetButton()
 		
-		//.expectedCompletionDateInput().clickFilterButton().verifyTableIspresent().clickResetButton()
+		.expectedCompletionDateInput().clickFilterButton().verifyTableIspresent().clickResetButton()
 		
 		;
 		

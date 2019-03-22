@@ -81,6 +81,67 @@ public class CoursePage extends MenuBarPage {
 	@FindBy(xpath = "//a[contains(text(),'Finish review')]")
 	private WebElement finishReviewLink;
 	
+	@FindBy(css = "img[title='Completed: Module 2 Project Checkpoint']")
+	private WebElement module2CheckPoint;
+	
+	@FindBy(css = "img[title='Completed: Module 3 Project Checkpoint']")
+	private WebElement module3CheckPoint;
+	
+	@FindBy(css = "img[title='Completed: Final Project Submission']")
+	private WebElement finalProjectCheckPoint;
+	
+	@FindBy(css = "img[title='Completed: Required: Participation Acknowledgement']")
+	private WebElement participationAcknowledgementCheckPoint;
+	
+	@FindBy(xpath = "//span[text()='Module 2 Project Checkpoint']")
+	private WebElement Module2ProjectCheckpointLink;
+	
+	@FindBy(xpath = "//button[text()='Edit submission']")
+	private WebElement EditSubmissionButton;
+	
+	@FindBy(css = "a[title='Add...']")
+	private WebElement AddButton;
+	
+	@FindBy(css = "//span[text()='Upload a file']")
+	private WebElement uploadAFileLink;
+	
+	@FindBy(css = "input[name='repo_upload_file']")
+	private WebElement chooseFileOption;
+	
+	@FindBy(css = "button[class='fp-upload-btn btn-primary btn']")
+	private WebElement uploadThisFileButton;
+	
+	
+	public CoursePage uploadAFile() throws Throwable {
+		waitForElementToBeVisibile(uploadAFileLink);
+		uploadAFileLink.click();
+		waitForElementToBeVisibile(chooseFileOption);
+		chooseFileOption.sendKeys(System.getProperty("user.dir")+"/src/test/resources/testdata/TLH2.txt");
+		waitForElementToBeVisibile(uploadThisFileButton);
+		uploadThisFileButton.click();
+		clickSaveChangesButton();
+		return this;
+	}
+	
+	public CoursePage clickAddButton() throws Throwable {
+		waitForElementToBeVisibile(AddButton);
+		AddButton.click();
+		return this;
+	}
+	
+	public CoursePage clickEditSubmissionButton() throws Throwable {
+		waitForElementToBeVisibile(EditSubmissionButton);
+		EditSubmissionButton.click();
+		return this;
+	}
+	
+	
+	public CoursePage clickModule2ProjectCheckpointLink() throws Throwable {
+		waitForElementToBeVisibile(Module2ProjectCheckpointLink);
+		Module2ProjectCheckpointLink.click();
+		return this;
+	}
+	
 	public CoursePage clickfinishReviewLink() throws Throwable {
 		waitForElementToBeVisibile(finishReviewLink);
 		finishReviewLink.click();
@@ -155,6 +216,15 @@ public class CoursePage extends MenuBarPage {
 	public CoursePage clickturnEditingOnLink() throws Throwable {
 		waitForElementToBeVisibile(turnEditingOnLink);
 		turnEditingOnLink.click();
+		return this;
+	}
+	
+	public CoursePage verifyCheckPoints() throws Throwable {
+		waitForElementToBeVisibile(module2CheckPoint);
+		waitForElementToBeVisibile(module3CheckPoint);
+		waitForElementToBeVisibile(finalProjectCheckPoint);
+		waitForElementToBeVisibile(participationAcknowledgementCheckPoint);
+		
 		return this;
 	}
 	

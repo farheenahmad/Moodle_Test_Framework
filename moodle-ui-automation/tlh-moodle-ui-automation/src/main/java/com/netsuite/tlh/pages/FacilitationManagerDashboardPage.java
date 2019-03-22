@@ -129,6 +129,15 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	@FindBy(xpath = "//*[text()='Facilitation Manager Dashboard']")
 	private WebElement facilitationManagerDashboardLink;
 	
+	@FindBy(css = "td[class='resubmitted']")
+	private WebElement resubmitedAssignment;
+	
+	public FacilitationManagerDashboardPage verifyResubmitedAssignment() throws Throwable {
+		waitForElementToBeVisibile(resubmitedAssignment);
+		waitForElementToBeClickable(resubmitedAssignment);
+		return this;
+	}
+	
 	public FacilitationManagerDashboardPage selectCourseStartDate() throws Throwable {
 		waitForElementToBeVisibile(courseStartDateDropDown);
 		courseStartDateDropDown.click();
@@ -223,6 +232,8 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	}
 	
 	public FacilitationManagerDashboardPage selectDateSubmitted() throws Throwable {
+		clickResetButton();
+		BrowserFactory.getDriver().navigate().refresh();
 		waitForElementToBeVisibile(dateSubmittedInput);
 		dateSubmittedInput.click();
 		waitForElementToBeVisibile(todaysDate);
