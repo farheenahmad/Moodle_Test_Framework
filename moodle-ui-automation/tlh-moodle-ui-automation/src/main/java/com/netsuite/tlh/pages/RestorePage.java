@@ -76,6 +76,7 @@ public class RestorePage extends BasePage {
 		waitForElementToBeClickable(uploadFileLink);
 		waitForElementToBeVisibile(uploadFileLink);
 		uploadFileLink.click();
+		Thread.sleep(2000);
 		waitForElementToBeClickable(uploadFileOption);
 		waitForElementToBeVisibile(uploadFileOption);
 		uploadFileOption.sendKeys(System.getProperty("user.dir")+"/src/test/resources/testdata/backup-moodle2-course-1401-thepsychofspor-ce-pov-20190107-1229.mbz");

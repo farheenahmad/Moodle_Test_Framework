@@ -71,7 +71,7 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		
 	}
 	
-	@Test(priority=6,description = "MFD-246 ::Verify dashboard views and functionality for different roles", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	//@Test(priority=6,description = "MFD-246 ::Verify dashboard views and functionality for different roles", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void VerifyDashboardViewsFunctionalityForDifferentRoles(LinkedHashMap<String, ?> testData) throws Throwable {
 		
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
@@ -105,7 +105,12 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		menuBarOperations.doLogOut();
 		loginOperations.doSecondLogin(userName, passWord);
 		rightNavOperations.getFacilitationManagerDashboard();
-		Navigator.FacilitationManagerDashboardOperations().verifyResubmittedAssignment().gradeAssigment(createBackupData);
+		Navigator.FacilitationManagerDashboardOperations().verifyResubmittedAssignment()
+		
+		
+		
+		.gradeAssigment2(createBackupData)
+		;
 		
 		
 		

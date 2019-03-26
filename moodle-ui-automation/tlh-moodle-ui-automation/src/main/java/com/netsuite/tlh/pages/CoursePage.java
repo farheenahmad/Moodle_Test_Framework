@@ -102,7 +102,7 @@ public class CoursePage extends MenuBarPage {
 	@FindBy(css = "a[title='Add...']")
 	private WebElement AddButton;
 	
-	@FindBy(css = "//span[text()='Upload a file']")
+	@FindBy(xpath = "//span[text()='Upload a file']")
 	private WebElement uploadAFileLink;
 	
 	@FindBy(css = "input[name='repo_upload_file']")
@@ -114,10 +114,14 @@ public class CoursePage extends MenuBarPage {
 	
 	public CoursePage uploadAFile() throws Throwable {
 		waitForElementToBeVisibile(uploadAFileLink);
+		waitForElementToBeClickable(uploadAFileLink);
 		uploadAFileLink.click();
 		waitForElementToBeVisibile(chooseFileOption);
+		waitForElementToBeClickable(chooseFileOption);
+		Thread.sleep(1000);
 		chooseFileOption.sendKeys(System.getProperty("user.dir")+"/src/test/resources/testdata/TLH2.txt");
 		waitForElementToBeVisibile(uploadThisFileButton);
+		waitForElementToBeClickable(uploadThisFileButton);
 		uploadThisFileButton.click();
 		clickSaveChangesButton();
 		return this;
@@ -281,6 +285,7 @@ public class CoursePage extends MenuBarPage {
 	public CoursePage clickActivityCompletionHeader() throws Throwable {
 		waitForElementToBeVisibile(activityCompletionHeader);
 		waitForElementToBeClickable(activityCompletionHeader);
+		Thread.sleep(1000);
 		activityCompletionHeader.click();
 		return this;
 	}
@@ -288,6 +293,7 @@ public class CoursePage extends MenuBarPage {
 	public CoursePage clickActivityCompletionHeader2() throws Throwable {
 		waitForElementToBeVisibile(activityCompletionHeader2);
 		waitForElementToBeClickable(activityCompletionHeader2);
+		Thread.sleep(1000);
 		activityCompletionHeader2.click();
 		return this;
 	}

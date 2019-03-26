@@ -10,13 +10,17 @@ public class FacilitationManagerDashboardOperations extends BaseOperations {
 	
 	public FacilitationManagerDashboardOperations gradeAssigment(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(FacilitationManagerDashboardPage.class).selectDateSubmitted().clickFilterButton()
-		.openAssigmentsLink()
-		
-		.selectAssignmentStatus(createBackupData.getStatus())
-		.clickFilterButton().checkIfGraded()
-		
-		.verifyGradedUngradedFilters()
+		.openAssigmentsLink().selectAssignmentStatus(createBackupData.getStatus()).clickFilterButton().checkIfGraded()
+		.verifyGradedUngradedFilters();
+		return this;	
+	}
+	
+	public FacilitationManagerDashboardOperations gradeAssigment2(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(FacilitationManagerDashboardPage.class).selectDateSubmitted().selectAssignmentStatus(createBackupData.getStatusResubmitted())
+		.clickFilterButton()
+		.openAssigmentsLink2().selectAssignmentStatus(createBackupData.getStatus()).clickFilterButton().checkIfGraded().verifyGradedUngradedFilters()
 		;
+		
 		return this;	
 	}
 	

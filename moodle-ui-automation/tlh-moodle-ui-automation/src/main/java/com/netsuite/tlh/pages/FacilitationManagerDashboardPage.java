@@ -327,7 +327,7 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		waitForElementToBeVisibile(table);
 		waitForElementToBeClickable(table);
 	  List <WebElement> elements=BrowserFactory.getDriver().findElements(By.xpath("//td[@class='text-danger bold']/ancestor::tr//td[3]//a"));
-	  
+	  Thread.sleep(1000);
 	  for(int i=1;i<=elements.size();i++){
 		  BrowserFactory.getDriver().navigate().refresh();
 		  WebElement element=BrowserFactory.getDriver().findElement(By.xpath("//td[@class='text-danger bold']/ancestor::tr//td[3]//a"));
@@ -345,6 +345,21 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		  gradeAssignment();
 		  verifyTableIspresent();
 	  }   
+	   return this;
+	}
+	
+	public FacilitationManagerDashboardPage openAssigmentsLink2() throws Throwable {
+		waitForElementToBeVisibile(table);
+		waitForElementToBeClickable(table);
+	  BrowserFactory.getDriver().findElement(By.xpath("//a[text()='Module 2 Project Checkpoint']")).click();
+	  Thread.sleep(2000);
+	  String currentWindow = BrowserFactory.getDriver().getWindowHandle();
+		for(String winHandle : BrowserFactory.getDriver().getWindowHandles()){
+			   if (BrowserFactory.getDriver().switchTo().window(winHandle).getTitle().contains("Assignment:")) {
+				   gradeAssignment2(); 	   
+			   }}  
+		BrowserFactory.getDriver().switchTo().window(currentWindow);
+	    
 	   return this;
 	}
 	
@@ -404,15 +419,52 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		return this;
 	}
 	
+	public FacilitationManagerDashboardPage gradeAssignment2() throws Throwable {
+		 ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+	            public Boolean apply(WebDriver driver) {
+	                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+	            }};
+	     WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
+	     wait.until(expectation);
+		 clickOneOfTheGrade();
+		 wait.until(expectation);
+		 Thread.sleep(2000);
+		 clicksaveChangesButton();
+		 wait.until(expectation);
+		  Thread.sleep(3000);
+		  try{  
+			  waitForElementToBeVisibile(gradedText);
+		  }
+		  catch(Exception e){ 
+			  clickOneOfTheGrade();
+			  clicksaveChangesButton();
+			  waitForElementToBePresent(By.cssSelector("input[value='Ok']"));
+			  waitForElementToBeClickable(By.cssSelector("input[value='Ok']"));
+			  WebElement ele=BrowserFactory.getDriver().findElement(By.cssSelector("input[value='Ok']"));
+			  ele.click();
+			  
+		  }
+		  
+		  waitForElementToBeVisibile(gradedText);
+		  BrowserFactory.getDriver().close();
+	     
+	
+					 
+			
+		return this;
+	}
+	
 	public FacilitationManagerDashboardPage clickOneOfTheGrade() throws Throwable {
 		waitForElementToBeVisibile(gradeMaximiseButton);
 		waitForElementToBeClickable(gradeMaximiseButton);
 		gradeMaximiseButton.click();
 		waitForElementToBePresent(By.cssSelector("tr[role='radiogroup']"));
+		waitForElementToBeClickable(By.cssSelector("tr[role='radiogroup']"));
 		List <WebElement> elements=BrowserFactory.getDriver().findElements(By.cssSelector("tr[role='radiogroup']"));
 		for(int i=1;i<=elements.size();i++){	
 			Thread.sleep(2000);
 			waitForElementToBePresent(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]"));
+			waitForElementToBeClickable(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]"));
 			BrowserFactory.getDriver().findElement(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]")).click();	
 		}	
 		return this;

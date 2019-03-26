@@ -99,9 +99,8 @@ public class AssignmentsPage extends MenuBarPage {
 	
 	public AssignmentsPage uploadFile() throws Throwable {
 		waitForElementToBeClickable(uploadFileLink);
-		waitForElementToBeVisibile(uploadFileLink);
 		uploadFileLink.click();
-		waitForElementToBeVisibile(fileUploadInput);
+		waitForElementToBeClickable(fileUploadInput);
 		Thread.sleep(1000);
 		fileUploadInput.sendKeys(System.getProperty("user.dir")+"/src/test/resources/testdata/TLH.txt");
 	   return this;
