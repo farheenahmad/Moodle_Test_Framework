@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
 import java.text.DateFormat;
 
 import java.text.SimpleDateFormat;
@@ -261,6 +263,23 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		return this;
 	}
 	
+	public FacilitationManagerDashboardPage verifyOriginalGraderFilter(String Status) throws Throwable {
+		waitForElementToBeVisibile(table);
+		waitForElementToBeClickable(table);
+		List <WebElement> ele= BrowserFactory.getDriver().findElements(By.xpath("//table[@class='table']//tbody//tr//td[5]"));
+		
+		for(int i=1;i<ele.size()+1;i++){	
+			String res=BrowserFactory.getDriver().findElement(By.xpath("//table[@class='table']//tbody//tr[" + i + "]//td[5]")).getText();
+			System.out.println(res);
+			if(!res.equalsIgnoreCase(Status)){
+				
+				Assert.assertEquals("False", "True");
+				
+			}
+		}		
+		return this;
+	}
+	
 	public FacilitationManagerDashboardPage refreshPage() throws Throwable {
 		BrowserFactory.getDriver().navigate().refresh();
 		return this;
@@ -382,6 +401,69 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		return this;
 	}
 	
+	public FacilitationManagerDashboardPage verifyCourseCodeValidations() throws Throwable {
+		waitForElementToBeVisibile(table);
+		waitForElementToBeClickable(table);
+		String Name= ParticipantsPage.Name;
+		List <WebElement> ele=BrowserFactory.getDriver().findElements(By.xpath("//table[@class='table']//tbody//tr//td[14]"));
+		for(int i=1;i<ele.size();i++){
+			String res=BrowserFactory.getDriver().findElement(By.xpath("//table[@class='table']//tbody//tr[" + i + "]//td[14]")).getText();
+			System.out.println(res);
+			if(!Name.equalsIgnoreCase(res)){
+				Assert.assertEquals("False", "True");
+			}
+		}
+		
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage verifyNoGradedAssignmentIspresent() throws Throwable {
+		List<WebElement> ele= BrowserFactory.getDriver().findElements(By.cssSelector("td[class='graded']"));
+		if(ele.size()==0){
+		    Assert.assertEquals("Passed", "Passed");
+		 } else {
+			 Assert.assertEquals("Fail","Passed");
+		 }
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage verifyFacilitatorIsEnrolled() throws Throwable {
+		List<WebElement> ele= BrowserFactory.getDriver().findElements(By.xpath("//table[@class='table']//tbody//td[7]"));
+		for(int i=0;i<ele.size();i++){
+			if(ele.get(i).getText().equalsIgnoreCase(null)){
+				Assert.assertEquals("Fail","Passed");
+			}}
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage verifyCourseCodeValidation() throws Throwable {
+		
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage verifyProperSignOffStatus(String Status) throws Throwable {
+		
+		if(Status.equalsIgnoreCase("Signed-off")){
+			List<WebElement> ele= BrowserFactory.getDriver().findElements(By.xpath("//a[text()='Sign Off']"));
+			if(ele.size()==0){
+			    Assert.assertEquals("Passed", "Passed");
+			 } else {
+				 Assert.assertEquals("Fail","Passed");
+			 }
+		}
+		if(Status.equalsIgnoreCase("Awaiting Sign-off")){
+			List<WebElement> ele= BrowserFactory.getDriver().findElements(By.xpath("//td[text()='Signed-off']"));
+			if(ele.size()==0){
+			    Assert.assertEquals("Passed", "Passed");
+			 } else {
+				 Assert.assertEquals("Fail","Passed");
+			 }
+		}
+		
+		
+		return this;
+	}
+	
 	
 	public FacilitationManagerDashboardPage gradeAssignment() throws Throwable {
 		Thread.sleep(2000);
@@ -426,17 +508,13 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	            }};
 	     WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
 	     wait.until(expectation);
-		 clickOneOfTheGrade();
-		 wait.until(expectation);
-		 Thread.sleep(2000);
+	     Thread.sleep(3000);
 		 clicksaveChangesButton();
 		 wait.until(expectation);
-		  Thread.sleep(3000);
 		  try{  
 			  waitForElementToBeVisibile(gradedText);
 		  }
 		  catch(Exception e){ 
-			  clickOneOfTheGrade();
 			  clicksaveChangesButton();
 			  waitForElementToBePresent(By.cssSelector("input[value='Ok']"));
 			  waitForElementToBeClickable(By.cssSelector("input[value='Ok']"));

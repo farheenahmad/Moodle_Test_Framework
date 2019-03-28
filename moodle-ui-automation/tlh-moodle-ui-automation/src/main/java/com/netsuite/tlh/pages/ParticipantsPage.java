@@ -19,6 +19,7 @@ public class ParticipantsPage extends BasePage {
 	public ParticipantsPage() throws DriverNotInitializedException {
 		super();
 	}
+	public static String Name;
 
 	@FindBy(xpath = "(//input[@type='submit'])[2]")
 	private WebElement enrollUsersButton;
@@ -118,6 +119,15 @@ public class ParticipantsPage extends BasePage {
 		waitForElementToBePresent(By.cssSelector("p>a[title='" + CourseName + "']"));
 		waitForElementToBeClickable(By.cssSelector("p>a[title='" + CourseName + "']"));
 		BrowserFactory.getDriver().findElement(By.cssSelector("p>a[title='" + CourseName + "']")).click();	
+		return this;
+	}
+	
+	public ParticipantsPage getStudentName() throws Throwable {
+		waitForElementToBeVisibile(participantsTable);
+		waitForElementToBeClickable(participantsTable);
+		
+		 Name=BrowserFactory.getDriver().findElement(By.xpath("//a[contains(text(),'Student')]/ancestor::tr//td[2]//a")).getText();
+		System.out.println(Name);
 		return this;
 	}
 	
