@@ -43,6 +43,11 @@ public class RightNavOperations extends BaseOperations {
 		return this;	
 	}
 	
+	public RightNavOperations getQuizzesPage() throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnQuizzesLink();
+		return this;	
+	}
+	
 	public RightNavOperations getFacilitationManagerDashboard() throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnFacilitationManagerDashboardLink();
 		return this;	

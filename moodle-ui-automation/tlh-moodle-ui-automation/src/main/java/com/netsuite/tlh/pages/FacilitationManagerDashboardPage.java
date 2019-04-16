@@ -25,12 +25,14 @@ import org.openqa.selenium.support.ui.Select;
 import com.framework.base.BrowserFactory;
 import com.framework.exceptions.DriverNotInitializedException;
 import com.netsuite.tlh.factory.NetsuiteTLHPageFactory;
+import com.netsuite.tlh.testdata.CreateBackupData;
 
 public class FacilitationManagerDashboardPage extends MenuBarPage {
 
 	public FacilitationManagerDashboardPage() throws DriverNotInitializedException {
 		super();
 	}
+	
 
 	@FindBy(css = "input[name='dateSubmitted']")
 	private WebElement dateSubmittedInput;
@@ -134,6 +136,49 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	@FindBy(css = "td[class='resubmitted']")
 	private WebElement resubmitedAssignment;
 	
+	@FindBy(id = "fecthData")
+	private WebElement fetchDataButton;
+	
+	public FacilitationManagerDashboardPage verifySignOffButtonIsNotPresent() throws Throwable {
+		List<WebElement> dynamicElement= BrowserFactory.getDriver().findElements(By.cssSelector("a[class='btn btn-primary signoff-button']"));
+		if(dynamicElement.size() == 0)
+		Assert.assertEquals("True", "True");
+		else
+			Assert.assertEquals("False", "True");	
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage clickOnFetchData() throws Throwable {
+		waitForElementToBeVisibile(fetchDataButton);
+		waitForElementToBeClickable(fetchDataButton);
+		fetchDataButton.click();
+		Thread.sleep(2000);
+		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+            }};
+            
+            WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
+            wait.until(expectation);
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage verifyAssignmentIsGraded(String Username) throws Throwable {
+		waitForElementToBeVisibile(filterButton);
+		waitForElementToBeClickable(filterButton);
+		waitForElementToBePresent(By.xpath("//td[text()='" + Username + "']/ancestor::tr//td[text()='Graded']"));
+
+		return this;
+	}
+	
+	public FacilitationManagerDashboardPage verifyGrader(String Student, String Facilitator) throws Throwable {
+		waitForElementToBeVisibile(filterButton);
+		waitForElementToBeClickable(filterButton);
+		waitForElementToBePresent(By.xpath("//td[text()='" + Student + "']/ancestor::tr//td[text()='" + Facilitator + "']"));
+
+		return this;
+	}
+	
 	public FacilitationManagerDashboardPage verifyResubmitedAssignment() throws Throwable {
 		waitForElementToBeVisibile(resubmitedAssignment);
 		waitForElementToBeClickable(resubmitedAssignment);
@@ -234,8 +279,8 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	}
 	
 	public FacilitationManagerDashboardPage selectDateSubmitted() throws Throwable {
-		clickResetButton();
-		BrowserFactory.getDriver().navigate().refresh();
+		
+		waitForElementToBeClickable(dateSubmittedInput);
 		waitForElementToBeVisibile(dateSubmittedInput);
 		dateSubmittedInput.click();
 		waitForElementToBeVisibile(todaysDate);
@@ -268,13 +313,10 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		waitForElementToBeClickable(table);
 		List <WebElement> ele= BrowserFactory.getDriver().findElements(By.xpath("//table[@class='table']//tbody//tr//td[5]"));
 		
-		for(int i=1;i<ele.size()+1;i++){	
+		for(int i=1;i<ele.size();i++){
 			String res=BrowserFactory.getDriver().findElement(By.xpath("//table[@class='table']//tbody//tr[" + i + "]//td[5]")).getText();
-			System.out.println(res);
 			if(!res.equalsIgnoreCase(Status)){
-				
 				Assert.assertEquals("False", "True");
-				
 			}
 		}		
 		return this;
@@ -342,13 +384,13 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		return this;
 	}
 	
-	public FacilitationManagerDashboardPage openAssigmentsLink() throws Throwable {
+	public FacilitationManagerDashboardPage openAssigmentsLink(CreateBackupData createBackupData) throws Throwable {
 		waitForElementToBeVisibile(table);
 		waitForElementToBeClickable(table);
-	  List <WebElement> elements=BrowserFactory.getDriver().findElements(By.xpath("//td[@class='text-danger bold']/ancestor::tr//td[3]//a"));
+	//  List <WebElement> elements=BrowserFactory.getDriver().findElements(By.xpath("//td[@class='text-danger bold']/ancestor::tr//td[3]//a"));
 	  Thread.sleep(1000);
-	  for(int i=1;i<=elements.size();i++){
-		  BrowserFactory.getDriver().navigate().refresh();
+	  for(int i=1;i<=3;i++){
+		  
 		  WebElement element=BrowserFactory.getDriver().findElement(By.xpath("//td[@class='text-danger bold']/ancestor::tr//td[3]//a"));
 		  waitForElementToBeClickable(element);
 		  element.sendKeys(Keys.chord(Keys.CONTROL,Keys.RETURN));
@@ -361,8 +403,12 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 					   }}  
 				BrowserFactory.getDriver().switchTo().window(currentWindow);
 		  }
-		  gradeAssignment();
-		  verifyTableIspresent();
+		  gradeAssignment()
+		  .clickOnFetchData()
+		  .selectDateSubmitted()
+		  .enterCourseCode(createBackupData.getCourseShortName())
+		  .clickFilterButton();
+		 
 	  }   
 	   return this;
 	}
@@ -389,7 +435,7 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		String dt= dateFormat.format(date);
 		waitForElementToBePresent(By.xpath("//td[contains(text(),'Graded')]/preceding-sibling::td[contains(text(),'" + dt + "')]"));
 		waitForElementToBePresent(By.xpath("//td[contains(text(),'Graded')]/following-sibling::td[contains(text(),'" + dt + "')]"));
-		waitForElementToBePresent(By.xpath("//td[contains(text(),'Admin User')]"));
+		//waitForElementToBePresent(By.xpath("//td[contains(text(),'Admin User')]"));
 		
 		
 		return this;
@@ -405,15 +451,13 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		waitForElementToBeVisibile(table);
 		waitForElementToBeClickable(table);
 		String Name= ParticipantsPage.Name;
-		List <WebElement> ele=BrowserFactory.getDriver().findElements(By.xpath("//table[@class='table']//tbody//tr//td[14]"));
+		List <WebElement> ele=BrowserFactory.getDriver().findElements(By.xpath("//table[@class='table']//tbody//tr//td[1]"));
 		for(int i=1;i<ele.size();i++){
-			String res=BrowserFactory.getDriver().findElement(By.xpath("//table[@class='table']//tbody//tr[" + i + "]//td[14]")).getText();
-			System.out.println(res);
+			String res=BrowserFactory.getDriver().findElement(By.xpath("//table[@class='table']//tbody//tr[" + i + "]//td[1]")).getText();
 			if(!Name.equalsIgnoreCase(res)){
 				Assert.assertEquals("False", "True");
 			}
-		}
-		
+		}	
 		return this;
 	}
 	

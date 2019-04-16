@@ -111,6 +111,16 @@ public class CoursePage extends MenuBarPage {
 	@FindBy(css = "button[class='fp-upload-btn btn-primary btn']")
 	private WebElement uploadThisFileButton;
 	
+	@FindBy(xpath = "//a[text()='Required: Participation Acknowledgement']")
+	private WebElement ParticipationAcknowledgementLink;
+	
+	public CoursePage clickParticipationAcknowledgementLink() throws Throwable {
+		waitForElementToBeVisibile(ParticipationAcknowledgementLink);
+		waitForElementToBeClickable(ParticipationAcknowledgementLink);
+		Thread.sleep(2000);
+		ParticipationAcknowledgementLink.click();
+		return this;
+	}
 	
 	public CoursePage uploadAFile() throws Throwable {
 		waitForElementToBeVisibile(uploadAFileLink);
@@ -227,7 +237,7 @@ public class CoursePage extends MenuBarPage {
 		waitForElementToBeVisibile(module2CheckPoint);
 		waitForElementToBeVisibile(module3CheckPoint);
 		waitForElementToBeVisibile(finalProjectCheckPoint);
-		waitForElementToBeVisibile(participationAcknowledgementCheckPoint);
+		//waitForElementToBeVisibile(participationAcknowledgementCheckPoint);
 		
 		return this;
 	}
@@ -263,6 +273,7 @@ public class CoursePage extends MenuBarPage {
 	}
 	
 	public CoursePage clickOnEditLinkforCourse(String courseName) throws Throwable {
+		Thread.sleep(2000);
 		waitForElementToBePresent(By.xpath
 				("//span[text()='" + courseName + "']/ancestor::div[@class='mod-indent-outer']//div//span[@class='actions']//div//div//div//a"));
 		waitForElementToBeClickable(By.xpath
@@ -273,6 +284,7 @@ public class CoursePage extends MenuBarPage {
 	}
 	
 	public CoursePage clickOnEditSettings(String courseName) throws Throwable {
+		Thread.sleep(2000);
 		waitForElementToBePresent(By.xpath
 				("//span[text()='" + courseName + "']/ancestor::div[@class='mod-indent-outer']//div//span[@class='actions']//div//div//div//div//a"));
 		waitForElementToBeClickable(By.xpath

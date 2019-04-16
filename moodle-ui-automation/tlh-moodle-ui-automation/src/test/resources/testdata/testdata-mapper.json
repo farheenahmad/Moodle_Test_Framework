@@ -9,5 +9,6 @@
 	"MFD-266": "src/test/resources/testdata/create-backup-for-course.json",
 	"MFD-246": "src/test/resources/testdata/enrollUsers.json",
 	"MFD-258": "src/test/resources/testdata/enrollUsers.json",
+	"MFD-269": "src/test/resources/testdata/enrollUsers.json",
 	"MFD-268": "src/test/resources/testdata/enrollUsers.json"
 }

@@ -45,8 +45,19 @@ public class ParticipantsPage extends BasePage {
 	@FindBy(css = "button[type='submit']")
 	private WebElement continueButton;
 	
-
+	@FindBy(xpath = "//button[text()='Unenrol']")
+	private WebElement unEnrollButton;
 	
+	public ParticipantsPage clickOnUnEnrolUsers(String UserName) throws Throwable {
+		waitForElementToBeVisibile(participantsTable);
+		waitForElementToBeClickable(participantsTable);
+		BrowserFactory.getDriver().findElement(By.xpath("//a[text()='Salvatore Cimino']/ancestor::tr//td//div//a[@title='Unenrol']")).click();
+		waitForElementToBeVisibile(unEnrollButton);
+		waitForElementToBeClickable(unEnrollButton);
+		unEnrollButton.click();
+		return this;
+	}
+		
 	public ParticipantsPage clickOnEnrolUsers() throws Throwable {
 		BrowserFactory.getDriver().navigate().refresh();
 		waitForElementToBeClickable(enrollUsersButton);
@@ -125,9 +136,7 @@ public class ParticipantsPage extends BasePage {
 	public ParticipantsPage getStudentName() throws Throwable {
 		waitForElementToBeVisibile(participantsTable);
 		waitForElementToBeClickable(participantsTable);
-		
-		 Name=BrowserFactory.getDriver().findElement(By.xpath("//a[contains(text(),'Student')]/ancestor::tr//td[2]//a")).getText();
-		System.out.println(Name);
+		Name=BrowserFactory.getDriver().findElement(By.xpath("//a[contains(text(),'Student')]/ancestor::tr//td[2]//a")).getText();
 		return this;
 	}
 	

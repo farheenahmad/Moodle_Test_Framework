@@ -47,6 +47,30 @@ public class AssignmentsPage extends MenuBarPage {
 	@FindBy(xpath = "//span[contains(text(),'Upload a file')]")
 	private WebElement uploadFileLink;
 	
+	@FindBy(xpath = "//a[text()='Module 2 Project Checkpoint']")
+	private WebElement Module2Link;
+	
+	@FindBy(xpath = "//a[text()='Module 3 Project Checkpoint']")
+	private WebElement Module3Link;
+	
+	
+	
+	public AssignmentsPage openAssigmentsLinkModule2() throws Throwable {
+		waitForElementToBeVisibile(table);
+		String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN); 
+		Module2Link.sendKeys(selectLinkOpeninNewTab);
+		completeAssignment(); 
+	   return this;
+	}
+	
+	public AssignmentsPage openAssigmentsLinkModule3() throws Throwable {
+		waitForElementToBeVisibile(table);
+		String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN); 
+		Module3Link.sendKeys(selectLinkOpeninNewTab);
+		completeAssignment(); 
+	   return this;
+	}
+	
 	
 	public AssignmentsPage openAssigmentsLink() throws Throwable {
 		waitForElementToBeVisibile(table);
@@ -54,8 +78,7 @@ public class AssignmentsPage extends MenuBarPage {
 	 for(int i=0;i<elements.size();i++){
 		 String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN); 
 		  elements.get(i).sendKeys(selectLinkOpeninNewTab); 
-		  completeAssignment();
-		 
+		  completeAssignment(); 
 	 }       
 	   return this;
 	}
@@ -98,11 +121,13 @@ public class AssignmentsPage extends MenuBarPage {
 	}
 	
 	public AssignmentsPage uploadFile() throws Throwable {
+		Thread.sleep(1000);
+		waitForElementToBeVisibile(uploadFileLink);
 		waitForElementToBeClickable(uploadFileLink);
 		uploadFileLink.click();
 		waitForElementToBeClickable(fileUploadInput);
-		Thread.sleep(1000);
-		fileUploadInput.sendKeys(System.getProperty("user.dir")+"/src/test/resources/testdata/TLH.txt");
+		Thread.sleep(2000);
+		fileUploadInput.sendKeys(System.getProperty("user.dir")+"/src/test/resources/testdata/dummy.pdf");
 	   return this;
 	}
 	

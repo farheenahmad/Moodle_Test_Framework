@@ -138,6 +138,7 @@ public class FacilitationDashboardPage extends MenuBarPage {
 	
 	public FacilitationDashboardPage selectDateSubmitted() throws Throwable {
 		waitForElementToBeVisibile(dateSubmittedInput);
+		waitForElementToBeClickable(dateSubmittedInput);
 		dateSubmittedInput.click();
 		waitForElementToBeVisibile(todaysDate);
 		todaysDate.click();
@@ -148,6 +149,7 @@ public class FacilitationDashboardPage extends MenuBarPage {
 	
 	public FacilitationDashboardPage expectedCompletionDateInput() throws Throwable {
 		waitForElementToBeVisibile(expectedCompletionDateInput);
+		waitForElementToBeClickable(expectedCompletionDateInput);
 		expectedCompletionDateInput.click();
 		waitForElementToBeVisibile(todaysDate3);
 		todaysDate3.click();

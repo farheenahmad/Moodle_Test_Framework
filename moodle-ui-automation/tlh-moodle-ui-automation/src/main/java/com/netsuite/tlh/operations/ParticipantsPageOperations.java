@@ -16,6 +16,12 @@ public class ParticipantsPageOperations extends BaseOperations {
 		
 	}
 	
+	public ParticipantsPageOperations UnenrollUser(String UserName) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnUnEnrolUsers(UserName);
+		return this;
+		
+	}
+	
 	public ParticipantsPageOperations enrollFacilitator(CreateBackupData createBackupData, String Username) throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnEnrolUsers().selectUsers(Username)
 		.selectRoles(createBackupData.getRole2()).clickOnEnrolUsersSaveButton();
