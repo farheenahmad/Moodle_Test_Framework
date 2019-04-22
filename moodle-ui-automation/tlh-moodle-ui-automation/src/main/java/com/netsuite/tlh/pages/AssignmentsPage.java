@@ -3,12 +3,15 @@ package com.netsuite.tlh.pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.framework.base.BrowserFactory;
 import com.framework.exceptions.DriverNotInitializedException;
@@ -88,7 +91,13 @@ public class AssignmentsPage extends MenuBarPage {
 		String currentWindow = BrowserFactory.getDriver().getWindowHandle();
 		for(String winHandle : BrowserFactory.getDriver().getWindowHandles()){
 			   if (BrowserFactory.getDriver().switchTo().window(winHandle).getTitle().equalsIgnoreCase("Assignment")) {
-			     waitForElementToBeVisibile(automationMoodleCourseHeading);
+				   ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+			            public Boolean apply(WebDriver driver) {
+			                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+			            }};
+			            
+			            WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
+			            wait.until(expectation);
 			     clickAddSubmissionButton();
 			     clickDragAndDropButton();
 			     uploadFile();
@@ -121,7 +130,7 @@ public class AssignmentsPage extends MenuBarPage {
 	}
 	
 	public AssignmentsPage uploadFile() throws Throwable {
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		waitForElementToBeVisibile(uploadFileLink);
 		waitForElementToBeClickable(uploadFileLink);
 		uploadFileLink.click();

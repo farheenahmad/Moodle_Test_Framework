@@ -1,9 +1,14 @@
 package com.netsuite.tlh.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.framework.base.BrowserFactory;
 import com.framework.exceptions.DriverNotInitializedException;
@@ -113,6 +118,59 @@ public class CoursePage extends MenuBarPage {
 	
 	@FindBy(xpath = "//a[text()='Required: Participation Acknowledgement']")
 	private WebElement ParticipationAcknowledgementLink;
+	
+	@FindBy(id = "id_name")
+	private WebElement AssignmentNameInput;
+	
+	@FindBy(css = "a[title='Actions']")
+	private WebElement CourseNameSettings;
+	
+	@FindBy(xpath = "//div[@class='dropdown-item']//*[text()='Edit settings']")
+	private WebElement CourseNameEditSettings;
+	
+	@FindBy(id = "id_fullname")
+	private WebElement CourseFullNameInputBox;
+	
+	@FindBy(id = "id_saveanddisplay")
+	private WebElement SaveAndDisplayButton;
+	
+	
+	public CoursePage clickSaveAndDisplayButton() throws Throwable {
+		waitForElementToBeVisibile(SaveAndDisplayButton);
+		waitForElementToBeClickable(SaveAndDisplayButton);
+		SaveAndDisplayButton.click();
+		return this;
+	}
+	
+	public CoursePage changeCourseFullNameInputBox(String NewName) throws Throwable {
+		waitForElementToBeVisibile(CourseFullNameInputBox);
+		waitForElementToBeClickable(CourseFullNameInputBox);
+		CourseFullNameInputBox.clear();
+		CourseFullNameInputBox.sendKeys(NewName);
+		return this;
+	}
+	
+	public CoursePage clickOncourseNameEditSettings() throws Throwable {
+		waitForElementToBeVisibile(CourseNameEditSettings);
+		waitForElementToBeClickable(CourseNameEditSettings);
+		CourseNameEditSettings.click();
+		return this;
+	}
+	
+	public CoursePage clickOncourseNameSettings() throws Throwable {
+		waitForElementToBeVisibile(CourseNameSettings);
+		waitForElementToBeClickable(CourseNameSettings);
+		CourseNameSettings.click();
+		return this;
+	}
+	
+	public CoursePage changeAssignmentName(String NewName) throws Throwable {
+		waitForElementToBeVisibile(AssignmentNameInput);
+		waitForElementToBeClickable(AssignmentNameInput);
+		AssignmentNameInput.clear();
+		AssignmentNameInput.sendKeys(NewName);
+		return this;
+	}
 	
 	public CoursePage clickParticipationAcknowledgementLink() throws Throwable {
 		waitForElementToBeVisibile(ParticipationAcknowledgementLink);
@@ -244,6 +302,12 @@ public class CoursePage extends MenuBarPage {
 	
 	public CoursePage clickturnEditingOffLink() throws Throwable {
 		waitForElementToBeVisibile(turnEditingOffLink);
+		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+            }};
+            WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
+    		wait.until(expectation);
 		turnEditingOffLink.click();
 		return this;
 	}

@@ -118,6 +118,16 @@ public class ParticipantsPage extends BasePage {
 		return this;
 	}
 	
+	public ParticipantsPage clickOnRespectiveApostopheUser(String Role, String count) throws Throwable {
+		BrowserFactory.getDriver().navigate().refresh();
+		waitForElementToBeVisibile(participantsTable);
+		waitForElementToBeClickable(participantsTable);
+		WebElement ele=BrowserFactory.getDriver().findElement
+		(By.xpath("(//td//span//*[contains(text(),'" + Role + "') and @class='quickeditlink']//ancestor::tr//td//a//img)[" + count + "]"));
+		ele.click();
+		return this;
+	}
+	
 	public ParticipantsPage clickOnLoginAs() throws Throwable {
 		waitForElementToBeVisibile(logInAsLink);
 		waitForElementToBeClickable(logInAsLink);
@@ -127,9 +137,9 @@ public class ParticipantsPage extends BasePage {
 	
 	public ParticipantsPage clickOnRespectiveCourse(String CourseName) throws Throwable {
 		BrowserFactory.getDriver().navigate().refresh();
-		waitForElementToBePresent(By.cssSelector("p>a[title='" + CourseName + "']"));
-		waitForElementToBeClickable(By.cssSelector("p>a[title='" + CourseName + "']"));
-		BrowserFactory.getDriver().findElement(By.cssSelector("p>a[title='" + CourseName + "']")).click();	
+		waitForElementToBePresent(By.xpath("//p[@class='tree_item branch canexpand']//a"));
+		waitForElementToBeClickable(By.xpath("//p[@class='tree_item branch canexpand']//a"));
+		BrowserFactory.getDriver().findElement(By.xpath("//p[@class='tree_item branch canexpand']//a")).click();	
 		return this;
 	}
 	

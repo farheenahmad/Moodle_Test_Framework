@@ -122,7 +122,7 @@ public class RightNavBar extends BasePage {
     		wait.until(expectation);
 		waitForElementToBeVisibile(participantsLink);
 		waitForElementToBeClickable(participantsLink);
-		participantsLink.click();
+		participantsLink.sendKeys(Keys.ENTER);
 		return this;
 	}
 	
@@ -139,10 +139,17 @@ public class RightNavBar extends BasePage {
 	
 	public RightNavBar clickOnCourse(String course) throws Throwable {
 		WebElement courseLink= BrowserFactory.getDriver().findElement(By.xpath("//p//a[text()='" + course + "']"));
-		
 		waitForElementToBeVisibile(courseLink);
 		waitForElementToBeClickable(courseLink);
 		courseLink.click();
+		return this;
+	}
+	
+	public RightNavBar clickOnApostopheCourse() throws Throwable {
+		BrowserFactory.getDriver().navigate().refresh();
+		waitForElementToBePresent(By.xpath("//p//a[contains(text(),'moodle')]"));
+		waitForElementToBeClickable(By.xpath("//p//a[contains(text(),'moodle')]"));
+		BrowserFactory.getDriver().findElement(By.xpath("//p//a[contains(text(),'moodle')]")).click();	
 		return this;
 	}
 

@@ -24,7 +24,29 @@ public class CreateBackupData implements ITestData {
 	private String facilitatorName;
 	private String originalGraderName;
 	private String performanceUserName;
+	private String Module2Newname;
+	private String courseName2;
 	
+	
+	public String getCourseName2() {
+		return courseName2;
+	}
+	public void setCourseName2(String courseName2) {
+		this.courseName2 = courseName2;
+	}
+	public String getModule2Newname() {
+		return Module2Newname;
+	}
+	public void setModule2Newname(String module2Newname) {
+		Module2Newname = module2Newname;
+	}
+	public String getModule3NewName() {
+		return Module3NewName;
+	}
+	public void setModule3NewName(String module3NewName) {
+		Module3NewName = module3NewName;
+	}
+	private String Module3NewName;
 	
 	public String getPerformanceUserName() {
 		return performanceUserName;

@@ -19,6 +19,20 @@ public class CoursePageOperations extends BaseOperations {
 		return this;	
 	}
 	
+	public CoursePageOperations changeCourseName(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(CoursePage.class).clickOncourseNameSettings().clickOncourseNameEditSettings()
+		.changeCourseFullNameInputBox(createBackupData.getCourseName2()).clickSaveAndDisplayButton();
+		;
+		return this;	
+	}
+	
+	public CoursePageOperations changeAssignmentName(String Module,String NewName) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(CoursePage.class).clickOnEditLinkforCourse(Module).clickOnEditSettings(Module)
+		.changeAssignmentName(NewName).clicksaveAndReturnCourseButton()
+		;
+		return this;	
+	}
+	
 	public CoursePageOperations verifyCheckPoints() throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(CoursePage.class).verifyCheckPoints().clickModule2ProjectCheckpointLink()
 		.clickEditSubmissionButton().clickAddButton().uploadAFile();

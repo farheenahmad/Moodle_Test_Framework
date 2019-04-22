@@ -48,8 +48,8 @@ public class MoodlePerformanceTest extends BaseTest{
 	
 	@Test(priority=9,description = "MFD-227 :: Deleting the respective course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void DeletingTheRespectiveCourse(LinkedHashMap<String, ?> testData) throws Throwable {
-	
-		rightNavOperations.getCoursesPage();
+		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
+		rightNavOperations.getCoursePage(createBackupData);
 		Navigator.GetCoursePageOperations().deleteRespectiveCourse();
 		
 	}

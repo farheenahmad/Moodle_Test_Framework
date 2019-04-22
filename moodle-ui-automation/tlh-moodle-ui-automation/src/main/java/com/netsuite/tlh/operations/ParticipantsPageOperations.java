@@ -43,8 +43,15 @@ public class ParticipantsPageOperations extends BaseOperations {
 		
 	}
 	
+	public ParticipantsPageOperations loginAsRespectiveApostopheUser(String Role, String Count) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnRespectiveApostopheUser(Role,Count)
+		.clickOnLoginAs().clickContinue();
+		return this;
+		
+	}
+	
 	public ParticipantsPageOperations clickOnRespectiveCourse(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
-		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnRespectiveCourse(createBackupData.getCourseName());
+		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnRespectiveCourse(createBackupData.getCourseShortName());
 		return this;
 		
 	}

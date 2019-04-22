@@ -9,35 +9,35 @@ public class FacilitationDashboardOperations extends BaseOperations {
 	
 	public FacilitationDashboardOperations verifyFilters(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
 		
-		NetsuiteTLHPageFactory.getPage(FacilitationDashboardPage.class)
+		NetsuiteTLHPageFactory.getPage(FacilitationDashboardPage.class).clickOnFetchData()
 		
-		.enterStudentName(createBackupData.getUserName1()).selectAssignmentStatus(createBackupData.getStatusAll()).clickFilterButton()
+		.enterStudentName(createBackupData.getUserName1()).enterCourseCode(createBackupData.getCourseShortName()).selectAssignmentStatus(createBackupData.getStatusAll()).clickFilterButton()
 		.verifyTableIspresent().clickResetButton()
 		
-		.selectDateSubmitted().selectAssignmentStatus(createBackupData.getStatusAll()).clickFilterButton()
+		.selectDateSubmitted().enterCourseCode(createBackupData.getCourseShortName()).selectAssignmentStatus(createBackupData.getStatusAll()).clickFilterButton()
 		.verifyTableIspresent().clickResetButton()
 		
 		.enterCourseCode(createBackupData.getCourseShortName()).selectAssignmentStatus(createBackupData.getStatusAll()).clickFilterButton().verifyTableIspresent().clickResetButton()
 		
-		.enterCourseName(createBackupData.getCourseName()).selectAssignmentStatus(createBackupData.getStatusAll())
+		.enterCourseName(createBackupData.getCourseName()).enterCourseCode(createBackupData.getCourseShortName()).selectAssignmentStatus(createBackupData.getStatusAll())
 		.clickFilterButton().verifyTableIspresent().clickResetButton()
 		
-		.enterAssignmentName(createBackupData.getAssignmentName()).selectAssignmentStatus(createBackupData.getStatusAll())
+		.enterAssignmentName(createBackupData.getAssignmentName()).enterCourseCode(createBackupData.getCourseShortName()).selectAssignmentStatus(createBackupData.getStatusAll())
 		.clickFilterButton().verifyTableIspresent().clickResetButton()
 		
-		.selectAssignmentStatus(createBackupData.getStatus()).clickFilterButton().verifyTableIspresent().clickResetButton()
+		.selectAssignmentStatus(createBackupData.getStatus()).enterCourseCode(createBackupData.getCourseShortName()).clickFilterButton().verifyTableIspresent().clickResetButton()
 		
-		.selectAssignmentStatus(createBackupData.getStatusResubmitted()).clickFilterButton().verifyTableIspresent().clickResetButton()
+		.selectAssignmentStatus(createBackupData.getStatusResubmitted()).enterCourseCode(createBackupData.getCourseShortName()).clickFilterButton().verifyTableIspresent().clickResetButton()
 		
-		.selectAssignmentStatus(createBackupData.getStatusUngraded()).clickFilterButton().verifyTableIspresent().clickResetButton()
+		.selectAssignmentStatus(createBackupData.getStatusUngraded()).enterCourseCode(createBackupData.getCourseShortName()).clickFilterButton().verifyTableIspresent().clickResetButton()
 		
-		.selectSignOffStatus(createBackupData.getSignOffStatusAll()).clickFilterButton().verifyTableIspresent().clickResetButton()
+		.selectSignOffStatus(createBackupData.getSignOffStatusAll()).enterCourseCode(createBackupData.getCourseShortName()).clickFilterButton().verifyTableIspresent().clickResetButton()
 		
-		.selectSignOffStatus(createBackupData.getSignOffStatusAwaiting()).clickFilterButton().verifyTableIspresent().clickResetButton()
+		.selectSignOffStatus(createBackupData.getSignOffStatusAwaiting()).enterCourseCode(createBackupData.getCourseShortName()).clickFilterButton().verifyTableIspresent().clickResetButton()
 		
-		.selectSignOffStatus(createBackupData.getSignOffStatusSigned()).clickFilterButton().verifyTableIspresent().clickResetButton()
+		.selectSignOffStatus(createBackupData.getSignOffStatusSigned()).enterCourseCode(createBackupData.getCourseShortName()).clickFilterButton().verifyTableIspresent().clickResetButton()
 		
-		.expectedCompletionDateInput().clickFilterButton().verifyTableIspresent().clickResetButton()
+		.expectedCompletionDateInput().enterCourseCode(createBackupData.getCourseShortName()).clickFilterButton().verifyTableIspresent().clickResetButton()
 		
 		;
 		

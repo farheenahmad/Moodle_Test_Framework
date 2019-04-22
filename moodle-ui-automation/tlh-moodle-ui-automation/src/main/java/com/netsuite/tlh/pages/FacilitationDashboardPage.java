@@ -7,11 +7,15 @@ import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.framework.base.BrowserFactory;
 import com.framework.exceptions.DriverNotInitializedException;
@@ -66,7 +70,25 @@ public class FacilitationDashboardPage extends MenuBarPage {
 	@FindBy(name = "signOffStatus")
 	private WebElement SignOffStatusDropdown;
 	
+	@FindBy(id = "fecthData")
+	private WebElement fetchDataButton;
+
 	
+	
+	public FacilitationDashboardPage clickOnFetchData() throws Throwable {
+		waitForElementToBeVisibile(fetchDataButton);
+		waitForElementToBeClickable(fetchDataButton);
+		fetchDataButton.click();
+		Thread.sleep(2000);
+		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+            }};
+            
+            WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
+            wait.until(expectation);
+		return this;
+	}
 		
 	public FacilitationDashboardPage clickFilterButton() throws Throwable {
 		waitForElementToBeVisibile(filterButton);

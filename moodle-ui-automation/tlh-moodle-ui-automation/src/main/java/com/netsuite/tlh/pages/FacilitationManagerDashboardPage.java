@@ -384,12 +384,11 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 		return this;
 	}
 	
-	public FacilitationManagerDashboardPage openAssigmentsLink(CreateBackupData createBackupData) throws Throwable {
+	public FacilitationManagerDashboardPage openAssigmentsLink(CreateBackupData createBackupData, int Count) throws Throwable {
 		waitForElementToBeVisibile(table);
 		waitForElementToBeClickable(table);
-	//  List <WebElement> elements=BrowserFactory.getDriver().findElements(By.xpath("//td[@class='text-danger bold']/ancestor::tr//td[3]//a"));
-	  Thread.sleep(1000);
-	  for(int i=1;i<=3;i++){
+	Thread.sleep(1000);
+	  for(int i=1;i<=Count;i++){
 		  
 		  WebElement element=BrowserFactory.getDriver().findElement(By.xpath("//td[@class='text-danger bold']/ancestor::tr//td[3]//a"));
 		  waitForElementToBeClickable(element);
