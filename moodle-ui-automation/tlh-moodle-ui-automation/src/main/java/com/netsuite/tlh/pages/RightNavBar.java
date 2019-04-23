@@ -157,7 +157,7 @@ public class RightNavBar extends BasePage {
 		
 		waitForElementToBeVisibile(assignmentsLink);
 		waitForElementToBeClickable(assignmentsLink);
-		assignmentsLink.click();
+		assignmentsLink.sendKeys(Keys.ENTER);
 		return this;
 	}
 	

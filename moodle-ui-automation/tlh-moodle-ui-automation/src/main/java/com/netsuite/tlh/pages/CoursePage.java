@@ -308,7 +308,7 @@ public class CoursePage extends MenuBarPage {
             }};
             WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
     		wait.until(expectation);
-		turnEditingOffLink.click();
+		turnEditingOffLink.sendKeys(Keys.ENTER);
 		return this;
 	}
 	

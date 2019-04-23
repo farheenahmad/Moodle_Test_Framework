@@ -46,6 +46,8 @@ public class ApostopheMoodleCourseTest extends BaseTest{
 		
 		rightNavOperations.getEnrollParticipantsPage();
 		Navigator.GetParticipationOperationsPage().loginAsRespectiveApostopheUser(createBackupData.getRole1(),"2");
+
+		
 		rightNavOperations.getAssignmentsPage();
 		Navigator.GetAssignmentsOperations().completeAssingments();
 		menuBarOperations.doLogOut();	
@@ -60,7 +62,6 @@ public class ApostopheMoodleCourseTest extends BaseTest{
 		public void VerifyDashboardViewsFunctionalityForDifferentRoles(LinkedHashMap<String, ?> testData) throws Throwable {
 			System.out.println("TCS 4");
 			CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
-			System.out.println("HoHo");
 			rightNavOperations.getEnrollParticipantsPage();
 			Navigator.GetParticipationOperationsPage().loginAsRespectiveApostopheUser(createBackupData.getRole2(),"1");
 			rightNavOperations.getFacilitationDashboard();
