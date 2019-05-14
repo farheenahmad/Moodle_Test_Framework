@@ -8,6 +8,7 @@
 	</parent>
 	<artifactId>tlh-moodle-ui-automation</artifactId>
 	<dependencies>
+	
 		<dependency>
 			<groupId>com.learninghouse.automation</groupId>
 			<artifactId>moodle-framework</artifactId>
