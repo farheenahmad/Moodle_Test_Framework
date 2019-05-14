@@ -39,6 +39,11 @@ public class RightNavOperations extends BaseOperations {
 		return this;	
 	}
 	
+	public RightNavOperations clickCoursesLink() throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnCourses();
+		return this;	
+	}
+	
 	public RightNavOperations getAssignmentsPage() throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnAssignments();
 		return this;	
@@ -56,6 +61,11 @@ public class RightNavOperations extends BaseOperations {
 	
 	public RightNavOperations getFacilitationDashboard() throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnFacilitationDashboardLink();
+		return this;	
+	}
+	
+	public RightNavOperations getHome() throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(RightNavBar.class);
 		return this;	
 	}
 	

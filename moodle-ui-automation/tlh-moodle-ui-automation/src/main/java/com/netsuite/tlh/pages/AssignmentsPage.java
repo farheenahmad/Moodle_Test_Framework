@@ -12,6 +12,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import com.framework.base.BrowserFactory;
 import com.framework.exceptions.DriverNotInitializedException;
@@ -56,7 +57,42 @@ public class AssignmentsPage extends MenuBarPage {
 	@FindBy(xpath = "//a[text()='Module 3 Project Checkpoint']")
 	private WebElement Module3Link;
 	
+	@FindBy(xpath = "//a[text()='Final Project Submission']")
+	private WebElement FinalProjectLink;
 	
+	@FindBy(xpath = "//th[text()='Grade']")
+	private WebElement GradeHeading;
+	
+	@FindBy(xpath = "//h3[contains(text(),'Previous Grades')]")
+	private WebElement previoudGrades;
+	
+	@FindBy(css = "table[class='criteria']>tbody>tr")
+	private WebElement previoudGradesTable;
+	
+	@FindBy(xpath = "//td[text()='Required: Participation Acknowledgement']")
+	private WebElement participationAcknowledgementText;
+	
+	@FindBy(xpath = "//td[text()='Module 2 Project Checkpoint']")
+	private WebElement module2Checkpoint;
+	
+	@FindBy(xpath = "//td[text()='Module 3 Project Checkpoint']")
+	private WebElement module3Checkpoint;
+	
+	@FindBy(xpath = "//td[text()='Final Project Submission']")
+	private WebElement finalProjectSubmision;
+	
+	public AssignmentsPage verifyStudentRubricView() throws Throwable {
+		waitForElementToBeVisibile(Module2Link);
+		Module2Link.click();
+		waitForElementToBeVisibile(previoudGrades);
+		waitForElementToBeVisibile(previoudGradesTable);
+		Assert.assertEquals(participationAcknowledgementText.isDisplayed(), true);
+		Assert.assertEquals(module2Checkpoint.isDisplayed(), true);
+		Assert.assertEquals(module3Checkpoint.isDisplayed(), true);
+		Assert.assertEquals(finalProjectSubmision.isDisplayed(), true);
+		
+	   return this;
+	}
 	
 	public AssignmentsPage openAssigmentsLinkModule2() throws Throwable {
 		waitForElementToBeVisibile(table);
@@ -135,8 +171,9 @@ public class AssignmentsPage extends MenuBarPage {
 		waitForElementToBeClickable(uploadFileLink);
 		uploadFileLink.click();
 		waitForElementToBeClickable(fileUploadInput);
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		fileUploadInput.sendKeys(System.getProperty("user.dir")+"/src/test/resources/testdata/dummy.pdf");
+		Thread.sleep(1000);
 	   return this;
 	}
 	

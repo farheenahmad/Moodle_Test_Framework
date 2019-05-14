@@ -7,6 +7,7 @@
 			"userName4": "June Allred-Smith",
 			"userName5": "Nina D'Amato",
 			"userName6":"Salvatore Cimino",
+			"performanceUserName": "Kelly Witt",
 			
 			"role1":"Student",
 			"role2":"Facilitator",
@@ -31,8 +32,8 @@
 			"signOffStatusAwaiting": "Awaiting Sign-off",
 			"signOffStatusSigned": "Signed-off",
 			"facilitatorName": "Test",
-			"originalGraderName":"Martha",
-			"performanceUserName": "Kelly Witt"
+			"originalGraderName":"Martha"
+			
 			
 			
 		}

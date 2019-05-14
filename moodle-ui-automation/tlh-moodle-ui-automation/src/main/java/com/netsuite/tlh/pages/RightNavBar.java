@@ -66,6 +66,17 @@ public class RightNavBar extends BasePage {
 	@FindBy(xpath = "//a[contains(text(),'Quizzes')]")
 	private WebElement quizzesLink;
 	
+	@FindBy(xpath = "//span[contains(text(),'Home')]")
+	private WebElement HomeLink;
+	
+	public RightNavBar clickOnHomeLink() throws Throwable {
+		
+		waitForElementToBeVisibile(HomeLink);
+		waitForElementToBeClickable(HomeLink);
+		HomeLink.click();
+		return this;
+	}
+	
 	public RightNavBar clickOnQuizzesLink() throws Throwable {	
 		waitForElementToBeVisibile(quizzesLink);
 		waitForElementToBeClickable(quizzesLink);
@@ -169,7 +180,7 @@ public class RightNavBar extends BasePage {
 		return this;
 	}
 	
-public RightNavBar clickOnFacilitationDashboardLink() throws Throwable {
+	public RightNavBar clickOnFacilitationDashboardLink() throws Throwable {
 		
 		waitForElementToBeVisibile(facilitationDashboardLink);
 		waitForElementToBeClickable(facilitationDashboardLink);

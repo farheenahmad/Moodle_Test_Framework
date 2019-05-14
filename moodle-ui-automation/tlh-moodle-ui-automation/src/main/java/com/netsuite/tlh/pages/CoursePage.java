@@ -134,6 +134,16 @@ public class CoursePage extends MenuBarPage {
 	@FindBy(id = "id_saveanddisplay")
 	private WebElement SaveAndDisplayButton;
 	
+	@FindBy(id = "expandable_branch_0_courses")
+	private WebElement CoursesLink;
+	
+	public CoursePage clickCoursesLink() throws Throwable {
+		waitForElementToBeVisibile(CoursesLink);
+		waitForElementToBeClickable(CoursesLink);
+		CoursesLink.click();
+		return this;
+	}
+	
 	
 	public CoursePage clickSaveAndDisplayButton() throws Throwable {
 		waitForElementToBeVisibile(SaveAndDisplayButton);

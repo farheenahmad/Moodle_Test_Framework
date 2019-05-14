@@ -51,7 +51,7 @@ public class ParticipantsPage extends BasePage {
 	public ParticipantsPage clickOnUnEnrolUsers(String UserName) throws Throwable {
 		waitForElementToBeVisibile(participantsTable);
 		waitForElementToBeClickable(participantsTable);
-		BrowserFactory.getDriver().findElement(By.xpath("//a[text()='Salvatore Cimino']/ancestor::tr//td//div//a[@title='Unenrol']")).click();
+		BrowserFactory.getDriver().findElement(By.xpath("//a[text()='" + UserName + "']/ancestor::tr//td//div//a[@title='Unenrol']")).click();
 		waitForElementToBeVisibile(unEnrollButton);
 		waitForElementToBeClickable(unEnrollButton);
 		unEnrollButton.click();

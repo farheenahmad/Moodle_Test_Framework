@@ -22,4 +22,11 @@ public class AssignmentsOperations extends BaseOperations {
 		return this;	
 	}
 	
+	public AssignmentsOperations verifyStudentRubricView() throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(AssignmentsPage.class).verifyStudentRubricView()
+		;
+		return this;	
+	}
+	
+	
 }
